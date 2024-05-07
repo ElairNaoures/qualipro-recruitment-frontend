@@ -1,7 +1,6 @@
 export interface ModuleModel{
  
-
     id?: number;
-    ModuleName?: string;
+    moduleName?: string;
   
 }

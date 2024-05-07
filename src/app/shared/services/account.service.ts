@@ -7,33 +7,35 @@ import { AccountModel } from '../models/account.model';
   providedIn: 'root'
 })
 export class AccountService {
+  url = `${environment.baseUrl}/api/Account`;
 
   constructor(private http: HttpClient) { }
 
+
   getAllAccounts(){
-    let url = `${environment.baseUrl}/api/Account`;
+    let url = `${this.url}`;
     return this.http.get<AccountModel[]>(url);
 
 
   }
 
   getAllAccountById(accountId: number) {
-    let url = `${environment.baseUrl}/api/Account/${accountId}`;
+    let url = `${this.url}/${accountId}`;
     return this.http.get<AccountModel>(url);
   }
 
   addAccount(account: AccountModel) {
-    let url = `${environment.baseUrl}/api/Account`;
+    let url = `${this.url}`;
     return this.http.post<AccountModel>(url, account);
   }
 
   updateAccount(accountId: number, account: AccountModel) {
-    let url = `${environment.baseUrl}/api/Account/${accountId}`;
+    let url = `${this.url}/${accountId}`;
     return this.http.put<AccountModel>(url, account);
   }
 
   deleteAccount(accountId: number) {
-    let url = `${environment.baseUrl}/api/Account/${accountId}`;
+    let url = `${this.url}/${accountId}`;
     return this.http.delete<any>(url);
   }
 }

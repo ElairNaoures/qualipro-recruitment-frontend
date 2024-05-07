@@ -7,3 +7,4 @@ export interface UserModel {
   birthdate?: Date;
   roleId?: number;
 }
+

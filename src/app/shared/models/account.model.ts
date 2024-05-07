@@ -2,9 +2,9 @@
 
 export interface AccountModel {
     id?: number;
-    Email?: string;
-    Password?: string;
-    Blocked?: Boolean;
+    email?: string;
+    password?: string;
+    blocked?: Boolean;
     UserId?: number;
     
   }

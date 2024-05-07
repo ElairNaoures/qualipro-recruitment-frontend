@@ -7,28 +7,38 @@ import { ModuleModel } from '../models/module.model';
   providedIn: 'root'
 })
 export class ModuleService {
+  url = `${environment.baseUrl}/api/Module`;
 
   constructor(private http: HttpClient) { }
     getAllModules() {
-      let url = `${environment.baseUrl}/api/Module`;
-      return this.http.get<ModuleModel[]>(url);
+      
+      let url = `${this.url}`;
+       return this.http.get<ModuleModel[]>(url);
     }
 
     getAllModuleById(moduleId: number) {
-      let url = `${environment.baseUrl}/api/api/Mdule/${moduleId}`;
+      let url = `${this.url}/${moduleId}`;
       return this.http.get<ModuleModel>(url);
     }
   
   
     addModule(module: ModuleModel) {
-      let url = `${environment.baseUrl}/api/api/Module`;
+      let url = `${this.url}`;
       return this.http.post<ModuleModel>(url, module);
     }
   
   
     updateModule(moduleId: number, module: ModuleModel) {
-      let url = `${environment.baseUrl}/api/Module/${moduleId}`;
+      let url = `${this.url}/${moduleId}`;
       return this.http.put<ModuleModel>(url, module);
+    }
+
+    
+  
+
+    deleteModule(moduleId: number) {
+      let url = `${this.url}/${moduleId}`;
+      return this.http.delete<any>(url);
     }
   
 }
