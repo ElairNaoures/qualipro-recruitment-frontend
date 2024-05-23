@@ -25,7 +25,7 @@ export interface ModuleData {
   // imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
 })
 export class ListModuleComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'moduleName', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'moduleName', 'actions'];
 
   dataSource: MatTableDataSource<ModuleModel>;
 
@@ -79,6 +79,7 @@ export class ListModuleComponent implements OnInit {
 
   openAddModule(){
       this.dialog.open(AddModuleDialogComponent);
+      this.visible = true;
   }
 
   openDeleteModule(moduleId: number){
@@ -96,6 +97,10 @@ openUpdateModule(module: ModuleData) {
     this.getAllModules();
     })
   }
+
+
+  visible: boolean = false;
+
 }
 
 

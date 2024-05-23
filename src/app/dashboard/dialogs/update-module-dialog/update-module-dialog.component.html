@@ -1,13 +1,31 @@
-<form [formGroup]="moduleForm">
-    <mat-form-field>
-      <mat-label>Module Name</mat-label>
-      <input matInput formControlName="moduleName">
+
+  <form [formGroup]="moduleForm">
+  <mat-dialog-content class="dialog-content">
+    <h1 class="dialog-title">Modifier Module</h1>
+    <mat-form-field class="form-field">
+      
+        <input matInput formControlName="moduleName"  placeholder="Modifier Ce Module" autocomplete="off">
     </mat-form-field>
-    
-    <div class="button-container">
-      <button mat-button color="primary" (click)="updateModule()">Save</button>
-      <button mat-button color="warn" (click)="onCancelClick()">Cancel</button>
-    </div>
-  </form>
+  </mat-dialog-content>
   
   
+  
+
+</form>
+
+<mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+  <div class="button-container" style="width: 100%">
+  <button mat-flat-button
+           color="primary"  
+           (click)="updateModule()">
+           
+           Valider
+          
+  </button>
+  <button mat-flat-button color="warn" 
+           (click)="closeDialog()">
+   
+           Annuler
+  </button>
+</div>
+</mat-dialog-actions>

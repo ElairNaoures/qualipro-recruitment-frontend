@@ -47,4 +47,9 @@ export class DeleteModuleDialogComponent {
       }
     );
   }
+
+
+  closeDialog(): void {
+    this.dialogRef.close(false);
+  }
 }  

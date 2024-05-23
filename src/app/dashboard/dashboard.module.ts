@@ -24,6 +24,14 @@ import { UpdateModuleDialogComponent } from './dialogs/update-module-dialog/upda
 import { UpdateRoleDialogComponent } from './dialogs/update-role-dialog/update-role-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrimengModule } from '../shared/modules/primeng.module';
+import { MaterialModule } from '../shared/modules/material.module';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { AvatarModule } from 'primeng/avatar';
+import { StyleClassModule } from 'primeng/styleclass';
+import { LayoutComponent } from '../layout/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -37,23 +45,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DeleteRoleDialogComponent,
     DeleteModuleDialogComponent,
     UpdateModuleDialogComponent,
-    UpdateRoleDialogComponent
+    UpdateRoleDialogComponent, 
+    LayoutComponent
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatIconModule,
-    MatDividerModule,
-    MatButtonModule
+    MaterialModule,
+    PrimengModule,
+    SidebarModule,
+    ButtonModule,
+    RippleModule,
+    AvatarModule,
+    StyleClassModule
   ]
 })
 export class DashboardModule { }

@@ -56,7 +56,9 @@ export class UpdateRoleDialogComponent  implements OnInit {
     }
   }
 
-  onCancelClick(): void {
+  
+
+  closeDialog(): void {
     this.dialogRef.close(false);
   }
 }

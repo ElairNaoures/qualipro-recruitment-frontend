@@ -24,7 +24,7 @@ export interface RoleData {
   styleUrls: ['./list-role.component.scss'],
 })
 export class ListRolesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'roleName', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'roleName', 'actions'];
   dataSource: MatTableDataSource<RoleData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -71,7 +71,9 @@ export class ListRolesComponent implements OnInit {
   }
 
   openAddRole() {
+  
     this.dialog.open(AddRoleDialogComponent);
+    this.visible = true;
   }
 
   openDeleteRole(roleId: number) {
@@ -90,4 +92,8 @@ export class ListRolesComponent implements OnInit {
       this.getAllRoles();
     })
   }
+  visible: boolean = false;
+
+  
+  
 }

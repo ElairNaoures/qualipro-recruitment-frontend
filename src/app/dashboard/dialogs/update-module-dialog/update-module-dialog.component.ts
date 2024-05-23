@@ -55,4 +55,8 @@ export class UpdateModuleDialogComponent implements OnInit {
   onCancelClick(): void {
     this.dialogRef.close(false);
   }
+
+  closeDialog(): void {
+    this.dialogRef.close(false);
+  }
 }

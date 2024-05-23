@@ -1,8 +1,26 @@
-<h2 mat-dialog-title>Confirm Deletion</h2>
+
+
+
+<h2 mat-dialog-title>Confirmer la suppression</h2>
 <mat-dialog-content>
-  Are you sure you want to delete this module?
+  Êtes-vous sûr de vouloir supprimer ce module ?
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="warn" (click)="deleteModule()">Delete</button>
+
+
+
+<mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+  <div class="button-container" style="width: 100%">
+  <button mat-flat-button
+           color="primary"  
+           (click)="deleteModule()">
+           
+           Valider
+          
+  </button>
+  <button mat-flat-button color="warn" 
+           (click)="closeDialog()">
+   
+           Annuler
+  </button>
+</div>
 </mat-dialog-actions>

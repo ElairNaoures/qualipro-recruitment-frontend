@@ -50,4 +50,9 @@ export class DeleteRoleDialogComponent {
       }
     );
   }
+
+
+  closeDialog(): void {
+    this.dialogRef.close(false);
+  }
 }  

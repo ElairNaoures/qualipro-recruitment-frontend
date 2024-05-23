@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+
+
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,13 +10,16 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './shared/modules/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { LayoutComponent } from './layout/layout/layout.component';
 import { FormsModule } from '@angular/forms';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { AvatarModule } from 'primeng/avatar';
+import { StyleClassModule } from 'primeng/styleclass';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -21,8 +27,14 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatPaginatorModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SidebarModule,
+    ButtonModule,
+    RippleModule,
+    AvatarModule,
+    StyleClassModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     provideAnimationsAsync()
   ],

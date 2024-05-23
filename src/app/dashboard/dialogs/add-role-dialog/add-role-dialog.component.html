@@ -1,19 +1,27 @@
-<mat-form-field>
-    <mat-label>Role Name</mat-label>
-    <input matInput #roleNameInput>
+
+<mat-dialog-content class="dialog-content">
+  <h1 class="dialog-title">Ajouter un role</h1>
+  <mat-form-field class="form-field">
+    
+      <input matInput #roleNameInput id="rolename" placeholder="Creer Un Role" autocomplete="off">
   </mat-form-field>
-  <!-- <mat-form-field>
-    <mat-label>Select</mat-label>
-    <mat-select>
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field> -->
-  <div class="button-container">
-    <button mat-button color="primary"  (click)="addRole(roleNameInput.value)">Save</button>
-    <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
-  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+  <div class="button-container" style="width: 100%">
+  <button mat-flat-button
+           color="primary"  
+           (click)="addRole(roleNameInput.value)">
+           
+           Valider
+          
+  </button>
+  <button mat-flat-button color="warn" 
+           (click)="closeDialog()">
+   
+           Annuler
+  </button>
+</div>
+</mat-dialog-actions>
+
+
