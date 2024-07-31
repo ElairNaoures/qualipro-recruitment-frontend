@@ -1,0 +1,46 @@
+
+<form [formGroup]="accountForm">
+    <mat-dialog-content class="dialog-content">
+      <h1 class="dialog-title">Modifier votre compte</h1>
+      <mat-form-field class="form-field">
+        
+          <input matInput formControlName="email"  placeholder="Modifier Ce email" autocomplete="off">
+      </mat-form-field>
+    </mat-dialog-content>
+    
+    <mat-dialog-content class="dialog-content">
+        <h1 class="dialog-title">Modifier votre password</h1>
+        <mat-form-field class="form-field">
+          
+            <input matInput formControlName="password"  placeholder="Modifier Ce password" autocomplete="off">
+        </mat-form-field>
+      </mat-dialog-content>
+
+      <mat-dialog-content class="dialog-content">
+        <h1 class="dialog-title">Modifier votre compte</h1>
+        <mat-form-field class="form-field">
+          
+            <input matInput formControlName="blocked"  placeholder="Modifier Ce status" autocomplete="off">
+        </mat-form-field>
+      </mat-dialog-content>
+    
+  
+  </form>
+  
+  <mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+    <div class="button-container" style="width: 100%">
+    <button mat-flat-button
+             color="primary"  
+             (click)="updateAccount()">
+             
+             Valider
+            
+    </button>
+    <button mat-flat-button color="warn" 
+             (click)="closeDialog()">
+     
+             Annuler
+    </button>
+  </div>
+  </mat-dialog-actions>
+  

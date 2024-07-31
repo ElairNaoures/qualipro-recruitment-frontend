@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background: linear-gradient(to bottom, #0f0c29, #5c54af, #24243e);
+}
+
+.main {
+    width: 350px;
+    height: 600px;
+    background: red; /* Couleur de secours en attendant l'image de fond */
+    overflow: hidden;
+	background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+   
+}
+
+#chk {
+    display: none;
+}
+
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    color: #fff;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	margin: 50px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+
+input{
+	width: 90%;
+	height: 10px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 12px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+
+select {
+    width: 90%; /* Ajustement de la largeur pour le select */
+    background-color: #e0dede; /* Couleur de fond pour le select */
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 12px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	height: 10px;
+}
+
+button {
+    width: 80%;
+    height: 40px;
+    margin: 20px 0;
+    color: #fff;
+    background: #a8e1eb51; /* Couleur de fond semi-transparente */
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+button:hover {
+    background: #5b33a5; /* Couleur de fond au survol */
+}
+
+.login {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 460px; /* Hauteur ajustée pour mieux afficher le formulaire */
+    background: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(100%);
+    transition: .8s ease-in-out;
+}
+
+.login label {
+    color: #6925e7;
+    font-size: 1.5em;
+    display: block;
+    text-align: center;
+    margin-top: 20px; /* Ajustement de l'espacement */
+}
+
+#chk:checked ~ .login {
+    transform: translateY(0);
+}
+
+#chk:checked ~ .signup label {
+    transform: translateY(-100%);
+}

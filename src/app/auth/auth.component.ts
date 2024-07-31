@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Sidebar } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-auth',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
+  // @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
+  // closeCallback(e: any): void {
+  //     this.sidebarRef.close(e);
+  // }
+
+  // sidebarVisible: boolean = false;
 }

@@ -1,0 +1,27 @@
+<mat-dialog-content class="dialog-content">
+    <h1 class="dialog-title">Ajouter Un Compte</h1>
+    <div class="form-fields-container">
+      <mat-form-field class="form-field">
+        <input matInput #emailInput id="email" placeholder="Créer Un Email" autocomplete="off" />
+      </mat-form-field>
+  
+      <mat-form-field class="form-field">
+        <input matInput #passwordInput id="password" placeholder="Créer Un Mot de Passe" autocomplete="off" />
+      </mat-form-field>
+  
+      <mat-form-field class="form-field">
+        <input matInput #blockedInput id="blocked" placeholder="Statut" autocomplete="off" />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="center">
+    <div class="button-container" style="width: 100%">
+      <button mat-flat-button color="primary" (click)="addAccount(emailInput.value, passwordInput.value, blockedInput.value === 'true')">
+        Valider
+      </button>
+      <button mat-flat-button color="warn" (click)="closeDialog()">
+        Annuler
+      </button>
+    </div>
+  </mat-dialog-actions>

@@ -1,0 +1,108 @@
+<div class="container">
+    <!-- Première partie horizontale -->
+    
+      <div class="row" style="display: flex; justify-content: center;align-items: center; width: 100%">
+        <!-- Message de salutation -->
+        <div class="col-md-12" style="margin-top: 4%;">
+          <!--<h1>Bienvenue !</h1>-->
+          <h3>tu veut modifier cet emploi ! :</h3>
+        </div>
+      </div>
+      <form [formGroup]="jobForm">
+      <div class="col-md-12" style="display: flex;justify-content: center;align-items: center;">
+      <!-- Première colonne -->
+      <div class="col-md-3">
+        
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier ce Emploi</h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="title"
+                placeholder="Modifier Ce title"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+  
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier ce description</h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="description"
+                placeholder="Modifier Ce description"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+  
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">
+              Modifier les années d'expérience nécessaires
+            </h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="yearsOfExperience"
+                placeholder="Modifier Ces années"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+       
+      </div>
+  
+      <!-- Deuxième colonne -->
+      <div style="display: flex; flex-direction: column">
+        <mat-dialog-content class="dialog-content">
+          <h5 class="dialog-title">Modifier ce languages</h5>
+          <mat-form-field class="form-field">
+            <input
+              matInput
+              formControlName="languages"
+              placeholder="Modifier Ce langue"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </mat-dialog-content>
+  
+        <mat-dialog-content class="dialog-content">
+          <h5 class="dialog-title">Modifier ce tot d'Education</h5>
+          <mat-form-field class="form-field">
+            <input
+              matInput
+              formControlName="educationLevel"
+              placeholder="Modifier Ce tot"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </mat-dialog-content>
+  
+        <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier la date d'expiration</h5>
+            <mat-form-field class="form-field">
+              <input matInput formControlName="expirationDate" [matDatepicker]="picker" placeholder="Modifier la date d'expiration" autocomplete="off">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-dialog-content>
+      </div>
+      
+    </div>
+</form>
+  </div>
+  <div style="display: flex; justify-content: center;align-items: center; width: 100%">
+      <mat-dialog-actions >
+          <div class="button-container" style="width: 100%">
+            <button mat-flat-button color="primary" (click)="updateJob()">
+              Valider
+            </button>
+            <button mat-flat-button color="warn" (click)="closeDialog()">
+              Annuler
+            </button>
+          </div>
+        </mat-dialog-actions>
+  </div>
+  
+  

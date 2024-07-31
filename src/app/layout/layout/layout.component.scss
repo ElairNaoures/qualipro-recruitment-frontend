@@ -6,6 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    height: 100%;
   }
   
   .example-is-mobile .example-toolbar {
@@ -29,4 +30,29 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
+  .example-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
   
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  .custom-button {
+    font-size: 12px; /* Ajustez la taille de la police selon vos besoins */
+    padding: 8px 16px; /* Ajustez le padding pour la taille du bouton */
+    background-color: rgb(28, 28, 179); /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Retirer la bordure par défaut */
+    border-radius: 4px; /* Ajout d'un arrondi aux coins */
+    text-align: center; /* Centrer le texte */
+    text-decoration: none; /* Retirer la décoration de lien par défaut */
+}
+
+.custom-button:hover {
+    background-color: darkblue; /* Couleur de fond au survol */
+}

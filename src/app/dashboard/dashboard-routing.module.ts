@@ -6,6 +6,9 @@ import { ListAccountsComponent } from './pages/list-accounts/list-accounts.compo
 import { ListModuleComponent } from './pages/list-module/list-module.component';
 import { ListRolesComponent } from './pages/list-role/list-role.component';
 import { JobDetailsPageComponent } from '../jobs/pages/job-details-page/job-details-page.component';
+import { ListJobComponent } from './pages/list-job/list-job.component';
+import { ListContractTypesComponent } from './pages/list-contract-types/list-contract-types.component';
+import { ListCondidatComponent } from './pages/list-condidat/list-condidat.component';
 
 const routes: Routes = [
   {
@@ -62,6 +65,59 @@ const routes: Routes = [
           },
 
           { path: 'list', component: ListModuleComponent },
+        ],
+      },
+
+      {
+        path: 'jobs',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListJobComponent },
+        ],
+      },
+
+      {
+        path: 'contracttypes',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListContractTypesComponent },
+        ],
+      },
+
+      
+      {
+        path: 'users',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListUsersComponent },
+        ],
+      },
+
+      {
+        path: 'condidats',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListCondidatComponent },
         ],
       },
     ],

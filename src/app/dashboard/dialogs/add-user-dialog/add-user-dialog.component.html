@@ -1,0 +1,48 @@
+<form [formGroup]="myForm">
+    <mat-dialog-content class="dialog-content">
+      <h1 class="dialog-title">Ajouter un utilisateur</h1>
+      <div class="form-fields-container">
+        <mat-form-field class="form-field">
+          <mat-label>Prénom</mat-label>
+          <input matInput id="firstName" placeholder="Prénom" autocomplete="off" formControlName="firstName" />
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Nom</mat-label>
+          <input matInput id="lastName" placeholder="Nom" autocomplete="off" formControlName="lastName" />
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Pays</mat-label>
+          <input matInput id="country" placeholder="Pays" autocomplete="off" formControlName="country" />
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Numéro de téléphone</mat-label>
+          <input matInput id="phoneNumber" placeholder="Numéro de téléphone" autocomplete="off" formControlName="phoneNumber" />
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [matDatepicker]="birthdatePicker" id="birthdate" placeholder="Date de naissance" autocomplete="off" formControlName="birthdate" />
+          <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #birthdatePicker></mat-datepicker>
+        </mat-form-field>
+        <select formControlName="roleId" required>
+					<option *ngFor="let role of roleData" [value]="role.id">{{ role.roleName }}</option>
+				  </select>
+      </div>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions align="center">
+      <div class="button-container" style="width: 100%">
+        <button mat-flat-button color="primary" (click)="addUser()">
+          Valider
+        </button>
+        <button mat-flat-button color="warn" (click)="closeDialog()">
+          Annuler
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+  

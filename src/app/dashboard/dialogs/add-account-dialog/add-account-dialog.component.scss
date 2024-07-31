@@ -1,0 +1,16 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .form-fields-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }

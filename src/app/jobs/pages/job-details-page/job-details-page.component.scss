@@ -1,0 +1,69 @@
+/* Global container styling */
+.container {
+  max-width: 2000px;
+  margin: 100 auto;
+}
+
+/* Card styling */
+.job-card {
+  border: none;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Card header styling */
+.card-header {
+  border-radius: 10px 10px 0 0;
+}
+
+.job-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.job-icon i {
+  font-size: 2rem;
+}
+
+.job-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.job-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Section styling */
+.section-title {
+  font-size: 1rem;
+ 
+  color: #333;
+}
+
+.job-section {
+  margin-bottom: 20px;
+}
+
+/* Header styling */
+header {
+  background-color: #151227;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .job-card {
+    margin-bottom: 100px;
+  }
+}

@@ -1,65 +1,59 @@
-<!-- //card 1 -->
 
-<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
 
-    <div style="display: flex; flex-direction: column; width: 100%; justify-content: center; align-items: center;">
-        <h1 style="text-align: left; font-size: 24px;">Offres d'emploi à la une</h1>
-
-        <div class="article-wrapper" style="width: 60%; display: flex; justify-content: center; align-items: center;">
-            <article>
+<h4 style="text-align: left; font-size: 24px; font-weight: bold; color: blue;">Offres d'emploi à la une</h4>
+<!-- <div class="articles-container">
+  <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 3%;" *ngFor="let job of jobs">
+      <div class="article-wrapper">
+          <article>
               <!-- <div class="article-image-container">
-                <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
+                  <img [src]="job.imageUrl" alt="Article Image">
               </div> -->
-              <div class="content-container">
-                <h3 class="article-title">Article Title</h3>
-                <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                <button class="read-more-btn">Read More</button>
+              <!-- <div class="content-container">
+                  <h3 class="article-title">{{ job.title }}</h3>
+                  <p class="article-content">{{ job.description }}</p>
+                  <button class="read-more-btn">Read More</button>
               </div>
-            </article>
-          </div>
-    
-          <div class="article-wrapper" style="width: 60%; display: flex; justify-content: center; align-items: center;">
-            <article>
-              <!-- <div class="article-image-container">
-                <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
-              </div> -->
-              <div class="content-container">
-                <h3 class="article-title">Article Title</h3>
-                <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                <button class="read-more-btn">Read More</button>
-              </div>
-            </article>
-          </div>
-        </div>
-</div>
-
+          </article>
+      </div>
+  </div>
+</div>  -->
 <!-- //card 2 -->
 <div class="articles-container">
-    <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 3%;">
-        <div class="article-wrapper">
-            <h1 style="text-align: left; font-size: 24px;">Offres d'emploi à la une</h1>
-            <article>
-                <div class="article-image-container">
-                    <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
-                </div>
-                <div class="content-container">
-                    <h3 class="article-title">Article Title</h3>
-                    <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                    <button class="read-more-btn">Read More</button>
-                </div>
-            </article>
+  <div class="article-wrapper" *ngFor="let job of jobs">
+
+      <article>
+       
+        <div class="article-image-container">
+          <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
+      </div>
+
+     
+          <div class="content-container">
+              <h3 class="article-title">{{ job.title }}</h3>
+              <p class="article-content">{{ job.description }}</p>
+              <button class="read-more-btn" (click)="viewJobDetails(job.id)">Read More</button>
+            </div>
+          <div class="article-header">
+            <label>Date de création:</label>
+
+            <div class="date">{{ job.createdAt }}</div>
+            <div class="icon">
+              <i class="fas fa-clock"></i> <!-- Font Awesome icon -->
+          </div>
         </div>
-        <div class="article-wrapper">
-            <article>
-                <div class="article-image-container">
-                    <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
-                </div>
-                <div class="content-container">
-                    <h3 class="article-title">Article Title</h3>
-                    <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                    <button class="read-more-btn">Read More</button>
-                </div>
-            </article>
+      </article>
+  </div>
+
+  <div class="article-wrapper">
+    <article>
+        <div class="article-image-container">
+            <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
         </div>
-    </div>
+        <div class="content-container">
+            <h3 class="article-title">Article Title</h3>
+            <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+            <!-- <a [routerLink]="['/jobs', job.id]" class="read-more-btn">Read More</a> -->
+          </div>
+    </article>
+</div>
 </div>

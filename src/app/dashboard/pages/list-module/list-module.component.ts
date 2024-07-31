@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddModuleDialogComponent } from '../../dialogs/add-module-dialog/add-module-dialog.component';
 import { DeleteModuleDialogComponent } from '../../dialogs/delete-module-dialog/delete-module-dialog.component';
 import { UpdateModuleDialogComponent } from '../../dialogs/update-module-dialog/update-module-dialog.component';
-import { RoleModel } from '../../../shared/models/Role.model';
 
 export interface ModuleData {
   id: number ;
@@ -21,8 +20,7 @@ export interface ModuleData {
   selector: 'app-list-module',
   templateUrl: './list-module.component.html',
   styleUrl: './list-module.component.scss',
-  // standalone: true,
-  // imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+
 })
 export class ListModuleComponent implements OnInit {
   displayedColumns: string[] = ['id', 'moduleName', 'actions'];
@@ -64,11 +62,11 @@ export class ListModuleComponent implements OnInit {
   getAllModules() {
     this.moduleservice.getAllModules().subscribe({
       next: (res: ModuleModel[]) => {
-        const roleData: ModuleModel[] = res.map(role => ({
-          id: role.id || 0,
-          moduleName: role.moduleName || '',
+        const moduleData: ModuleModel[] = res.map(module => ({
+          id: module.id || 0,
+          moduleName: module.moduleName || '',
         }));
-        this.dataSource.data = roleData;
+        this.dataSource.data = moduleData;
         console.log(this.dataSource.data);
       },
       error: err => {

@@ -1,1 +1,40 @@
-<p>sign-in works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Centered Wrapper</title>
+</head>
+<body>
+    <div class="background">
+        <div class="wrapper">
+            <form [formGroup]="form">
+                <h2>Login</h2>
+                <div class="input-text">
+                    <i class="material-icons">email</i>
+                    <input type="email" formControlName="email">
+                    <label>Enter your email</label>
+                </div>
+                <div class="input-text">
+                    <i class="material-icons">lock</i>
+                    <input type="password" formControlName="password">
+                    <label>Enter your password</label>
+                </div>
+                <div class="fget">
+                    <label for="remember">
+                        <input type="checkbox" class="remember">
+                        <p>Remember me</p>
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" (click)="login()"> Log in</button>
+                <div class="register">
+                    <p>Don have an account? <a href="#">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

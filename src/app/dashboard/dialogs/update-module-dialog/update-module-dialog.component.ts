@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UpdateModuleDialogComponent implements OnInit {
   moduleForm!: FormGroup;
-  moduleToUpdate: ModuleModel = {};
+  moduleToUpdate: ModuleModel = { id:0,  moduleName:''};
 
   constructor(
     public dialogRef: MatDialogRef<UpdateModuleDialogComponent>,
@@ -29,6 +29,7 @@ export class UpdateModuleDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.data && this.data.id) {
       this.moduleToUpdate = { ...this.data };
+      this.moduleForm.patchValue(this.moduleToUpdate);
     }
     console.log("moduleToUpdate",this.moduleToUpdate)
     }

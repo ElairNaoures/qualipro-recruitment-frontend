@@ -27,6 +27,7 @@ export class LayoutComponent {
   );
 
   private _mobileQueryListener: () => void;
+  
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

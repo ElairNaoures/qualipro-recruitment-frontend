@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume/CV Design</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body>
+    <p-button (click)="generatePDF()" label="Download PDF" />
+
+    <!-- <button class="read-more-btn" (click)="generatePDF()">Download PDF</button> -->
+
+    <!-- <button (click)="generatePDF()">Download PDF</button> -->
+    <div  id="resume"  class="resume">
+        <div class="resume_left">
+          <div class="resume_profile">
+            <img [src]="condidat?.profilePic || 'https://i.imgur.com/eCijVBe.png'" alt="profile_pic">
+          </div>
+          <div class="resume_content">
+            <div class="resume_item resume_info">
+              <div class="title">
+                <p class="bold">{{ condidat?.firstName }} {{ condidat?.lastName }}</p>
+                <p class="regular">Designer</p>
+              </div>
+              <ul>
+                <li>
+                  <div class="icon">
+                    <i class="fas fa-map-signs"></i>
+                  </div>
+                  <div class="data">
+                    {{ condidat?.country }} <br /> {{ condidat?.city }}
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="data">
+                    {{ condidat?.phoneNumber }}
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="data">
+                    {{ condidat?.email }}
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <i class="fab fa-weebly"></i>
+                  </div>
+                  <div class="data">
+                    {{ condidat?.website }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Skills Section -->
+            <div class="resume_item resume_skills">
+              <div class="title">
+                <p class="bold">Skills</p>
+              </div>
+              <ul>
+                <li *ngFor="let skill of condidat?.skills">
+                  <div class="skill_name">
+                    {{ skill.name }}
+                  </div>
+                  <div class="skill_progress">
+                    <span [style.width]="skill.percentage + '%'"></span>
+                  </div>
+                  <div class="skill_per">{{ skill.percentage }}%</div>
+                </li>
+              </ul>
+            </div>
+            <!-- Social Section -->
+            <div class="resume_item resume_social">
+              <div class="title">
+                <p class="bold">Social</p>
+              </div>
+              <ul>
+                <li *ngFor="let social of condidat?.socials">
+                  <div class="icon">
+                    <i [class]="social.icon"></i>
+                  </div>
+                  <div class="data">
+                    <p class="semi-bold">{{ social.platform }}</p>
+                    <p>{{ social.username }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="resume_right">
+          <div class="resume_item resume_about">
+            <div class="title">
+              <p class="bold">About</p>
+            </div>
+            <p>{{ condidat?.summary }}</p>
+          </div>
+          <!-- Work Experience Section -->
+          <div class="resume_item resume_work">
+            <div class="title">
+              <p class="bold">Work Experience</p>
+            </div>
+            <ul>
+                <li *ngFor="let experience of professionalExperiences">
+                    <div class="date">{{ experience.startDate | date:'yyyy' }} - {{ experience.endDate | date:'yyyy' }}</div>
+                    <div class="info">
+                      <p class="semi-bold">{{ experience.title }}</p>
+                      <p>{{ experience.company }} - {{ experience.location }}</p>
+                      <p>{{ experience.description }}</p>
+                    </div>
+                  </li>
+            </ul>
+          </div>
+          <!-- Education Section -->
+          <div class="resume_item resume_education">
+            <div class="title">
+              <p class="bold">Education</p>
+            </div>
+            <ul>
+                <li *ngFor="let education of educations">
+                    <div class="date">{{ education.startDate | date:'yyyy' }} - {{ education.endDate | date:'yyyy' }}</div>
+                    <div class="info">
+                        <p class="semi-bold">{{ education.title }} at {{ education.establishment }}</p>
+                        <p>{{ education.description }}</p>
+                    </div>
+                </li>
+            </ul>
+          </div>
+          <!-- Hobby Section -->
+          <div class="resume_item resume_hobby">
+            <div class="title">
+              <p class="bold">Hobby</p>
+            </div>
+            <ul>
+              <li *ngFor="let hobby of condidat?.hobbies">
+                <i [class]="hobby.icon"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+</body>
+</html>

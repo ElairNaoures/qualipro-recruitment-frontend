@@ -1,1 +1,69 @@
-<p>job-details-page works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails de l'emploi</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="bg-primary py-3">
+    <div class="container text-center">
+      <h1 class="text-white">Détails de l'emploi</h1>
+    </div>
+  </header>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card job-card shadow">
+          <div class="card-header bg-primary text-white">
+            <div class="d-flex align-items-center">
+              <div class="job-icon bg-white text-primary d-flex justify-content-center align-items-center rounded-circle">
+                <i class="fas fa-briefcase fa-2x"></i>
+              </div>
+              <div class="ml-3">
+                <h2 class="job-title mb-0" style="color: #fff; font-size: 2rem;">{{ job?.title }}</h2>
+                <p class="job-subtitle mb-0" style="color: #ccc;"><i class="far fa-calendar-alt"></i> Publiée le : {{ job?.createdAt | date: 'longDate' }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="job-section">
+                  <h3 class="section-title" style="color: #0056b3;"><i class="fas fa-align-left"></i> Description</h3>
+                  <p class="mb-0">{{ job?.description }}</p>
+                </div>
+                <div class="job-section">
+                  <h3 class="section-title" style="color: #0056b3;"><i class="fas fa-briefcase"></i> Expérience requise</h3>
+                  <p class="mb-0">{{ job?.yearsOfExperience }}</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="job-section">
+                  <h3 class="section-title" style="color: #0056b3;"><i class="fas fa-language"></i> Langues exigées</h3>
+                  <p class="mb-0">{{ job?.languages }}</p>
+                </div>
+                <div class="job-section">
+                  <h3 class="section-title" style="color: #0056b3;"><i class="fas fa-graduation-cap"></i> Niveau d'éducation</h3>
+                  <p class="mb-0">{{ job?.educationLevel }}</p>
+                </div>
+                <div class="job-section">
+                  <h3 class="section-title" style="color: #0056b3;"><i class="far fa-calendar-check"></i> Date d'expiration</h3>
+                  <p class="mb-0">{{ job?.expirationDate | date }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript and dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

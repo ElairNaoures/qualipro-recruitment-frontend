@@ -1,0 +1,31 @@
+<form [formGroup]="myForm">
+    <mat-dialog-content class="dialog-content">
+      <h1 class="dialog-title">Ajouter Un type de contrat</h1>
+      <div class="form-fields-container">
+        <mat-form-field class="form-field">
+          <input matInput #designationInput id="designation" placeholder="designation" autocomplete="off" formControlName="designation" />
+        </mat-form-field>
+    
+        
+    
+    
+       
+    
+       
+    
+       
+      </div>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="center">
+      <div class="button-container" style="width: 100%">
+        <button mat-flat-button color="primary" (click)="addContractType()">
+          Valider
+        </button>
+        <button mat-flat-button color="warn" (click)="closeDialog()">
+          Annuler
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+  

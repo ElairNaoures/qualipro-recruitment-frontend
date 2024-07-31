@@ -6,15 +6,19 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { AddAccountDialogComponent } from '../../dialogs/add-account-dialog/add-account-dialog.component';
+import { DeleteAccountDialogComponent } from '../../dialogs/delete-account-dialog/delete-account-dialog.component';
+import { UpdateAccountDialogComponent } from '../../dialogs/update-account-dialog/update-account-dialog.component';
 
 
 
 
 export interface AccountData {
-  id: number | undefined;
-  email: string | undefined;
-  password: string | undefined;
-  blocked: Boolean | undefined;
+  id: number ;
+  email: string ;
+  password: string ;
+  blocked: Boolean ;
 
 
  // UserId?: number;
@@ -26,24 +30,26 @@ export interface AccountData {
   selector: 'app-list-accounts',
   templateUrl: './list-accounts.component.html',
   styleUrl: './list-accounts.component.scss',
-  // standalone: true,
-  // imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  
 })
 export class ListAccountsComponent  implements OnInit {
 
 
-  displayedColumns: string[] = ['id', 'Email', 'Password', 'Blocked',  'edit', 'delete'];
-  dataSource: MatTableDataSource<AccountData>;
+  displayedColumns: string[] = ['id', 'email', 'password', 'blocked', 'actions'];
+  dataSource: MatTableDataSource<AccountModel>;
+
+  selecteAccountId: number | undefined;
+  account_data:AccountModel[]= [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  accountsList: AccountModel[] = [];
   
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+    private dialog: MatDialog
+  ) {
     
     this.dataSource = new MatTableDataSource();
-
   }
 
   ngOnInit(): void {
@@ -66,43 +72,53 @@ export class ListAccountsComponent  implements OnInit {
     }
   }
 
+ 
 
   getAllAccounts() {
     this.accountService.getAllAccounts().subscribe({
       next: (res: AccountModel[]) => {
-        console.log('list of accounts', res);
-        const accountData: AccountData[] = res.map(account => ({
-          id: account.id,
-          email: account.email,
-          password: account.password,
-          blocked: account.blocked,
-          edit: '',
-          delete: ''
-
+        const accountData: AccountModel[] = res.map(account => ({
+      
+          id: account.id || 0,
+          email: account.email || '',
+          password: account.password || '',
+          blocked: account.blocked === true || account.blocked === false ? account.blocked : false, 
          
-          
+                   
         }));
         this.dataSource.data = accountData;
+        console.log(this.dataSource.data);
+
       },
       error: err => {
         console.log('error', err);
       },
     });
-  }  
+  }
+  
+  
+  openAddAccount(){
+    this.dialog.open(AddAccountDialogComponent);
+    this.visible = true;
+}
+visible: boolean = false;
+
+
+openDeleteAccount(accountId: number){
+  this.dialog.open(DeleteAccountDialogComponent, {
+  data: { accountId: accountId }
+});
 }
 
-// /** Builds and returns a new User. */
-// function createNewUser(id: number): UserData {
-//   const name =
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-//     ' ' +
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-//     '.';
+openUpdateAccount(account: AccountData) {
+  const dialog = this.dialog.open(UpdateAccountDialogComponent, {
+    data: account,
+  });
 
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-//   };
-// }
+  dialog.afterClosed().subscribe((res) => {  
+    this.getAllAccounts();
+    })
+  }
+
+
+}

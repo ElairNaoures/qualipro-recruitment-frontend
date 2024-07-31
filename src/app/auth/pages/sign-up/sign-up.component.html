@@ -1,1 +1,36 @@
-<p>sign-up works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slide Navbar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">    
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">                
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <label for="chk" aria-hidden="true">Sign up</label>
+				<input type="text" name="summary" placeholder="summary" formControlName="summary" required>
+
+				<input type="text" name="firstName" placeholder="Prénom" formControlName="firstName" required>
+				<input type="text" name="lastName" placeholder="Nom de famille" formControlName="lastName" required>
+				<input type="password" name="password" placeholder="Mot de passe" formControlName="password" required>
+				<input type="email" name="email" placeholder="Email" formControlName="email" required>
+				<input type="text" name="country" placeholder="Pays" formControlName="country" required>
+				<!-- <select formControlName="roleId" required>
+					<option [value]="1">Candidat</option>
+					<option [value]="2">Super Admin</option>
+				</select> -->
+
+				<!-- <select formControlName="roleId" required>
+					<option *ngFor="let role of roleData" [value]="role.id">{{ role.roleName }}</option>
+				  </select> -->
+				<input type="text" name="phoneNumber" placeholder="Numéro de téléphone" formControlName="phoneNumber" required>
+				<input type="date" name="birthdate" placeholder="Date de naissance" formControlName="birthdate" required>
+				<button type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

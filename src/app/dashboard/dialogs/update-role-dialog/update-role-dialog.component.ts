@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class UpdateRoleDialogComponent  implements OnInit {
   roleForm!: FormGroup;
-  roleToUpdate: RoleModel = {};
+  roleToUpdate: RoleModel = { id:0, roleName:''};
 
   constructor(
     public dialogRef: MatDialogRef<UpdateRoleDialogComponent>,
@@ -26,13 +26,14 @@ export class UpdateRoleDialogComponent  implements OnInit {
     private snackBar: MatSnackBar
   ) { 
     this.roleForm = this.fb.group({
-      roleName: ['', Validators.required]
+      roleName: ['', Validators.required,  Validators.email]
     });
   }
 
   ngOnInit(): void {
     if (this.data && this.data.id) {
       this.roleToUpdate = { ...this.data };
+      this.roleForm.patchValue(this.roleToUpdate);
     }
     console.log("roleToUpdate",this.roleToUpdate)
     }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -23,7 +22,6 @@ import { DeleteModuleDialogComponent } from './dialogs/delete-module-dialog/dele
 import { UpdateModuleDialogComponent } from './dialogs/update-module-dialog/update-module-dialog.component';
 import { UpdateRoleDialogComponent } from './dialogs/update-role-dialog/update-role-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from '../shared/modules/primeng.module';
 import { MaterialModule } from '../shared/modules/material.module';
 import { SidebarModule } from 'primeng/sidebar';
@@ -32,6 +30,25 @@ import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LayoutComponent } from '../layout/layout/layout.component';
+import { AddAccountDialogComponent } from './dialogs/add-account-dialog/add-account-dialog.component';
+import { DeleteAccountDialogComponent } from './dialogs/delete-account-dialog/delete-account-dialog.component';
+import { UpdateAccountDialogComponent } from './dialogs/update-account-dialog/update-account-dialog.component';
+import { ListJobComponent } from './pages/list-job/list-job.component';
+import { AddJobDialogComponent } from './dialogs/add-job-dialog/add-job-dialog.component';
+import { UpdateJobDialogComponent } from './dialogs/update-job-dialog/update-job-dialog.component';
+import { DeleteJobDialogComponent } from './dialogs/delete-job-dialog/delete-job-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ListContractTypesComponent } from './pages/list-contract-types/list-contract-types.component';
+import { AddContactTypeDialogComponent } from './dialogs/add-contact-type-dialog/add-contact-type-dialog.component';
+import { DeleteContactTypeDialogComponent } from './dialogs/delete-contact-type-dialog/delete-contact-type-dialog.component';
+import { AddUserDialogComponent } from './dialogs/add-user-dialog/add-user-dialog.component';
+import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
+import { ListCondidatComponent } from './pages/list-condidat/list-condidat.component';
+import { DeleteCondidatDialogComponent } from './dialogs/delete-condidat-dialog/delete-condidat-dialog.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +63,21 @@ import { LayoutComponent } from '../layout/layout/layout.component';
     DeleteModuleDialogComponent,
     UpdateModuleDialogComponent,
     UpdateRoleDialogComponent, 
-    LayoutComponent
+    LayoutComponent,
+     AddAccountDialogComponent,
+     DeleteAccountDialogComponent,
+     UpdateAccountDialogComponent,
+     ListJobComponent,
+     AddJobDialogComponent,
+     UpdateJobDialogComponent,
+     DeleteJobDialogComponent,
+     ListContractTypesComponent,
+     AddContactTypeDialogComponent,
+     DeleteContactTypeDialogComponent,
+     AddUserDialogComponent,
+     DeleteUserDialogComponent,
+     ListCondidatComponent,
+     DeleteCondidatDialogComponent
 
   ],
   imports: [
@@ -60,7 +91,12 @@ import { LayoutComponent } from '../layout/layout/layout.component';
     ButtonModule,
     RippleModule,
     AvatarModule,
-    StyleClassModule
+    StyleClassModule,
+    MatDatepickerModule, 
+    MatInputModule, 
+    MatNativeDateModule, 
+    MatFormFieldModule,
+    MatDividerModule
   ]
 })
 export class DashboardModule { }

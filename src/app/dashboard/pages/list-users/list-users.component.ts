@@ -4,15 +4,20 @@ import { UserModel } from '../../../shared/models/user.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { AddUserDialogComponent } from '../../dialogs/add-user-dialog/add-user-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteUserDialogComponent } from '../../dialogs/delete-user-dialog/delete-user-dialog.component';
 
 
 export interface UserData {
-  id: number | undefined;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  country: string | undefined;
-  phoneNumber: string | undefined;
-  birthdate: Date | undefined;
+  id: number ;
+  firstName: string ;
+  lastName: string ;
+  country: string ;
+  phoneNumber: string ;
+  birthdate: string ;
+  roleName: string ;
+  
   
  // roleId: number | undefined;
 }
@@ -23,15 +28,14 @@ export interface UserData {
   styleUrls: ['./list-users.component.scss'],
 })
 export class ListUsersComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate', 'edit', 'delete'];
-  // displayedColumns: string[] = ['id', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate', 'roleId'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate','roleName' , 'actions'];
 
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService , private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -52,29 +56,54 @@ export class ListUsersComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  
+  
   getAllUsers() {
     this.userService.getAllUsers().subscribe({
       next: (res: UserModel[]) => {
-        console.log('list of users', res);
+        console.log('Users from API:', res); // Vérifiez les données de l'utilisateur reçues
         const userData: UserData[] = res.map(user => ({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          country: user.country,
-          phoneNumber: user.phoneNumber,
-          birthdate: user.birthdate,
-          edit: '',
-          delete: ''
-          //roleId: user.roleId
-        }));
+          id: user.id || 0,
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+          country: user.country || '',
+          phoneNumber: user.phoneNumber || '',
+          birthdate: user.birthdate || '',
+          roleName: user.roleName || '', 
+                }));
         this.dataSource.data = userData;
+        console.log('DataSource:', this.dataSource.data); // Vérifiez les données affectées à dataSource
       },
-      error: err => {
-        console.log('error', err);
+      error: (err: any) => {
+        console.error('Error fetching users:', err); // Loguez l'erreur
       },
+      complete: () => {}
     });
-    console.log("data",this.dataSource.data);
-    
-  }  
+  }
+  
+  
+  openDeleteUser(userId: number){
+    this.dialog.open(DeleteUserDialogComponent, {
+     data: { userId: userId }
+   });
+ }
+
+  
+  
+
+
+  
+  openAddUser(){
+
+    let dialogRef =  this.dialog.open(AddUserDialogComponent);
+      this.visible = true;
+      dialogRef.afterClosed().subscribe((res) => {
+
+        if (res.data == "success") {
+this.getAllUsers();
+        }
+      });
+  }
+
+  visible: boolean = false;
 }
