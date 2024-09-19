@@ -1,1 +1,50 @@
-<p>education-condidat works!</p>
+<div class="container">
+    <h1 class="page-title">Education Management</h1>
+    <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="educations">
+        <div *ngFor="let education of educations.controls; let i = index" [formGroupName]="i">
+          <!-- Small title for each education section -->
+          <div class="education-section">
+            <h2 class="education-title">Education {{ i + 1 }}</h2>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" />
+              <mat-error *ngIf="education.get('title')?.hasError('required')">Title is required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Establishment</mat-label>
+              <input matInput formControlName="establishment" />
+              <mat-error *ngIf="education.get('establishment')?.hasError('required')">Establishment is required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="startDate" />
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+              <mat-error *ngIf="education.get('startDate')?.hasError('required')">Start date is required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="endPicker" formControlName="endDate" />
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+              <mat-error *ngIf="education.get('endDate')?.hasError('required')">End date is required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+  
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,65 @@
+.section-container {
+    margin: 20px;
+    padding: 10px;
+    max-width: 800px; /* Adjust max-width as needed */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title-container h4 {
+    margin: 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-button-row {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .mat-card {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .mat-card-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 600px; /* Limit height */
+    overflow-y: auto; /* Add scroll if content overflows */
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .option-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  mat-checkbox {
+    margin-left: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  
+  .example-filter-row {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+  

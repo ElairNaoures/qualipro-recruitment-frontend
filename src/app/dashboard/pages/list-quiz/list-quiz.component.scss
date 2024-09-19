@@ -1,0 +1,55 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 20%;
+    margin-left: auto; /* Moves the filter row to the right */
+    margin-right: 8px;
+  }
+  
+  td, th {
+    width: 25%;
+    
+  }
+  
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 150px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items at the start and end of the container */
+    align-items: center; /* Vertically aligns items */
+  }
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  .example-filter-row {
+    margin-left: auto; /* Moves the filter row to the right */
+    margin-right: 8px; /* Adds some space between the filter row and the buttons */
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 20%;/* Adjust width as needed */
+  }

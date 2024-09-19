@@ -7,6 +7,7 @@ export interface UserModel {
   country?: string;
   phoneNumber?: string;
   birthdate?: string; 
+  imageFileName?: string;
   roleId?: number | null;
   roleName?: string; 
   role?: {

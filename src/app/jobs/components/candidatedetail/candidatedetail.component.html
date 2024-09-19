@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="toolbar">
+
+    <mat-toolbar-row>
+      
+      <span class="page-title">Candidate Details</span>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!-- Button to go back to the job list with an arrow -->
+  <button mat-button class="back-button" (click)="navigateToJobList()">
+    <mat-icon>arrow_back</mat-icon> 
+    <span class="back-text">Tous les emplois</span>
+  </button>
+  <div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>person</mat-icon> Personal Information
+        </mat-card-title>
+        <button mat-raised-button color="primary" (click)="togglePersonalInfo()">
+          {{ showPersonalInfo ? 'Hide' : 'Modify' }}
+        </button>
+      </mat-card-header>
+      <mat-card-content *ngIf="showPersonalInfo">
+        <app-information-perso-condidat [condidatId]="condidatId"></app-information-perso-condidat>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>school</mat-icon> Education Information
+        </mat-card-title>
+        <button mat-raised-button color="primary" (click)="toggleEducationInfo()">
+          {{ showEducationInfo ? 'Hide' : 'Modify' }}
+        </button>
+      </mat-card-header>
+      <mat-card-content *ngIf="showEducationInfo">
+        <app-education-condidat [condidatId]="condidatId"></app-education-condidat>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>work</mat-icon> Professional Experience
+        </mat-card-title>
+        <button mat-raised-button color="primary" (click)="toggleExperienceInfo()">
+          {{ showExperienceInfo ? 'Hide' : 'Modify' }}
+        </button>
+      </mat-card-header>
+      <mat-card-content *ngIf="showExperienceInfo">
+        <app-experience-prof-condidat [condidatId]="condidatId"></app-experience-prof-condidat>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Button to view CV -->
+    <div class="cv-button-container">
+      <button mat-raised-button color="primary" (click)="viewCV()">
+        Consulter votre CV
+      </button>
+    </div>
+  </div>
+  

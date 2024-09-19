@@ -129,4 +129,7 @@ export class ProfileCondidatPageComponent implements OnInit {
       pdf.save('resume.pdf');
     });
   }
+  navigateToJobSearch() {
+    this.router.navigate(['/jobs/jobs-lien/list']);
+  }
 }

@@ -1,0 +1,59 @@
+<button mat-button class="back-button" (click)="navigateToJobList()">
+    <mat-icon>arrow_back</mat-icon> 
+    <span class="back-text">Tous les emplois demander</span>
+  </button>
+<div class="container">
+           
+    
+    <h1 class="page-title">Modifier vos Informations</h1>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+        <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+        <mat-error *ngIf="userForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+  
+      
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Birthdate</mat-label>
+        <input matInput [matDatepicker]="birthdatePicker" formControlName="birthdate" />
+        <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdatePicker></mat-datepicker>
+      </mat-form-field>
+  
+    
+    <!-- Image file upload -->
+    <div>
+        <label for="imageFile">Upload Image</label>
+        <input type="file" id="imageFile" (change)="onFileSelect($event, 'image')" />
+      </div>
+  
+     
+      
+  
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </div>
+  

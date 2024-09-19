@@ -1,52 +1,64 @@
+// src/app/components/sign-in/sign-in.component.ts
+
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { SignInModel } from '../../../shared/models/sign-in.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginInputModel } from '../../../shared/models/user-account-role.model';
+import { LoginInputModelCondidat, LoginResponseModelCondidat } from '../../../shared/models/Condidat.model';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss',
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  form!: FormGroup;
-  // email: string = '';
-  // password: string = '';
+  form: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
   }
-  login() {
-    const credentials: LoginInputModel = {
+
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/jobs/candidatedetail']); 
+    }
+  }
+
+  login(): void {
+    if (this.form.invalid) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    const credentials: LoginInputModelCondidat = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
     };
-    console.log(credentials);
 
     this.authService.signInCondidat(credentials).subscribe(
-      (response) => {
+      (response: LoginResponseModelCondidat) => {
         if (response.success) {
           localStorage.setItem('token', response.accessToken!);
-          this.router.navigate(['/dashboard']);
-          console.log("Login successful");     
+
+          // Assurez-vous que `response.condidatInfo` contient `CondidatId`
+          const condidatId = response.condidatInfo?.condidatId;
+
+          if (condidatId) {
+            this.router.navigate([`/jobs/candidatedetail/${condidatId}`]);
+          } else {
+            console.error('Candidate ID is not available.');
+            alert('An unexpected error occurred. Please try again later.');
+          }
         } else {
-          alert(response.message); // Show backend error message
+          alert(response.message);
         }
       },
       (error) => {
         console.error('Error:', error);
-        if (error.status === 400) {
-          alert('Invalid credentials. Please check your email and password.'); 
-        } else {
-          alert('An unexpected error occurred. Please try again later.'); 
-        }
+        alert('An unexpected error occurred. Please try again later.');
       }
     );
   }

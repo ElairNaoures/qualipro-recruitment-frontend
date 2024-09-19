@@ -1,0 +1,26 @@
+
+
+
+<h2 mat-dialog-title>Confirmer la suppression</h2>
+<mat-dialog-content>
+  Êtes-vous sûr de vouloir supprimer ce emploi demander ?
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+  <div class="button-container" style="width: 100%">
+  <button mat-flat-button
+           color="primary"  
+           (click)="deleteJobApplication()">
+           
+           Valider
+          
+  </button>
+  <button mat-flat-button color="warn" 
+           (click)="closeDialog()">
+   
+           Annuler
+  </button>
+</div>
+</mat-dialog-actions>

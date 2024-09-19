@@ -1,0 +1,49 @@
+.container {
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.toolbar {
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+mat-card {
+  margin-bottom: 16px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+}
+
+mat-card-title mat-icon {
+  margin-right: 8px;
+}
+
+button {
+  margin-top: 8px;
+}
+.back-button {
+  color: black; /* Set text color to black */
+}
+
+.back-text {
+  margin-left: 8px;
+  font-weight: bold; /* Optional: To make the text bold */
+}
+
+.spacer {
+  flex: 1 1 auto; /* Ensures the title stays in the center */
+}

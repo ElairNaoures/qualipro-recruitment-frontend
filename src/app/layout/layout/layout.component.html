@@ -4,19 +4,53 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="example-app-name">QualiPro Recruitment</h1>
-    <section>
-      <div>
-      <div class="card flex justify-content-center gap-2">
-    <a routerLink="/auth/pages/sign-up-admin" class="p-button font-bold custom-button">
-        Inscription
-    </a>
-    <a routerLink="/auth/pages/sign-in-admin" class="p-button font-bold custom-button">
-        Connexion
-    </a>
-</div>
-  </div>
-    <!-- <p-button  label="Add" /> -->
-    </section>
+    <!-- <button mat-icon-button (click)="logout()">
+      <mat-icon>person</mat-icon>
+    </button> -->
+    <span class="spacer"></span>
+    <!-- Notification Icon with unread count -->
+    <button mat-icon-button [matMenuTriggerFor]="notificationMenu" (click)="onNotificationIconClick()">
+      <mat-icon>notifications</mat-icon>
+      <span *ngIf="unreadNotificationsCount > 0" class="notification-count">{{ unreadNotificationsCount }}</span>
+    </button>
+    
+
+    <mat-menu #notificationMenu="matMenu" (opened)="markAllAsRead()">
+      <ng-container *ngIf="notifications.length > 0; else noNotifications">
+        <mat-list>
+          <mat-list-item *ngFor="let notification of notifications" (click)="onNotificationClick(notification)">
+            <mat-icon [ngClass]="{'notification-icon': !notification.isRead, 'notification-icon-read': notification.isRead}">
+              {{ notification.isRead ? 'notifications' : 'notifications_active' }}
+            </mat-icon>
+            <div class="notification-content">
+              <span class="notification-message">{{ notification.message }}</span>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+      <ng-template #noNotifications>
+        <mat-list>
+          <mat-list-item>No notifications</mat-list-item>
+        </mat-list>
+      </ng-template>
+    </mat-menu>
+    
+
+    <!-- User Icon with Profile and Logout -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item [routerLink]="['/updateinformation', userId]">
+        <mat-icon>account_circle</mat-icon>
+        <span>Update Profile</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+    <span *ngIf="userName">{{ userName }}</span>
   </mat-toolbar>
 
   <mat-sidenav-container
@@ -30,11 +64,30 @@
       fixedTopGap="56"
     >
       <mat-nav-list>
-        @for (nav of sidenavMenuItems; track nav) {
-        <a mat-list-item routerLink="." [routerLink]="nav.route">{{
-          nav.name
-        }}</a>
-        }
+        <!-- Regular navigation items -->
+        <ng-container *ngFor="let nav of sidenavMenuItems">
+          <ng-container *ngIf="!nav.children">
+            <a mat-list-item [routerLink]="nav.route">
+              <mat-icon class="side-nav-icon">{{ nav.icon }}</mat-icon>
+              <span>{{ nav.name }}</span>
+            </a>
+          </ng-container>
+
+          <!-- Statistiques menu with children -->
+          <ng-container *ngIf="nav.name === 'Statistiques'">
+            <mat-list-item (click)="toggleStatisticsMenu()">
+              <mat-icon class="side-nav-icon">bar_chart</mat-icon>
+              <span>Statistiques</span>
+              <mat-icon class="mat-icon-rotate" [ngClass]="{'rotated': showStatisticsMenu}">expand_more</mat-icon>
+            </mat-list-item>
+            <mat-nav-list *ngIf="showStatisticsMenu">
+              <a mat-list-item *ngFor="let stat of statisticsOptions" [routerLink]="stat.route" class="statistic-item">
+                {{ stat.name }}
+              </a>
+            </mat-nav-list>
+            
+          </ng-container>
+        </ng-container>
       </mat-nav-list>
     </mat-sidenav>
 

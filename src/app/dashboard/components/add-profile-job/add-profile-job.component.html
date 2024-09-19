@@ -1,0 +1,41 @@
+<div class="section-container">
+    <div class="title-container">
+      <h4>Ajouter les profils nécessaires pour les emplois</h4>
+    </div>
+    <br />
+    <mat-divider></mat-divider>
+    <br />
+    <section class="example-flex-container">
+      <div class="example-button-row">
+        <button mat-icon-button color="primary" (click)="addProfileJob()">
+          <mat-icon>add</mat-icon> <!-- Icône pour ajouter -->
+        </button>
+        <button mat-icon-button color="warn" (click)="removeLastProfileJob()">
+          <mat-icon>remove</mat-icon> <!-- Icône pour supprimer -->
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </section>
+    <div class="mat-elevation-z8">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="profileJobForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="profileJobs">
+              <div *ngFor="let profileJob of profileJobs.controls; let i = index" [formGroupName]="i">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Nom du Profil</mat-label>
+                  <input matInput formControlName="profileName" required>
+                  <mat-error *ngIf="profileJob.get('profileName')?.hasError('required')">
+                    Le nom du profil est requis
+                  </mat-error>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+              </div>
+            </div>
+            <button mat-raised-button color="primary" type="submit">Ajouter</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

@@ -1,0 +1,118 @@
+
+<div class="section-container">
+    <div class="title-container">
+      <h4>Liste des Skills</h4>
+    </div>
+    <br />
+    <mat-divider></mat-divider>
+  
+    <br />
+    <section class="example-flex-container">
+      <div class="example-button-row">
+        
+    
+    <div>
+        <p-button (click)="openAddSkill()" label="Add" />
+      </div> 
+     
+        <!-- <button mat-flat-button color="warn"   >Delete</button> -->
+      </div>
+    
+      <mat-divider></mat-divider>
+    
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Search by name"
+          #input
+        />
+      </mat-form-field>
+    </section>
+    
+     <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort> 
+       
+  
+   
+  
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+  
+
+  
+   
+  
+    <!-- Nom Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+  
+    <!-- technicalSkill Column -->
+    <ng-container matColumnDef="technicalSkill">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> technicalSkill </th>
+      <td mat-cell *matCellDef="let row"> {{row.technicalSkill}} </td>
+    </ng-container>
+
+    <!-- softSkill Column -->
+    <ng-container matColumnDef="softSkill">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> softSkill </th>
+        <td mat-cell *matCellDef="let row"> {{row.softSkill}} </td>
+      </ng-container>
+   
+    
+    <!-- toolsSkill Column -->
+    <ng-container matColumnDef="toolsSkill">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> toolsSkill </th>
+        <td mat-cell *matCellDef="let row"> {{row.toolsSkill}} </td>
+      </ng-container>
+   
+  
+    <!-- Colonne Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-icon-button
+          matTooltip="Click to Edit"
+          color="primary"
+          (click)="openUpdateSkill(row)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          matTooltip="Click to Delete"
+          color="warn"
+          (click)="openDeleteSkill(row.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <!-- Header row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Data rows -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    <!-- Row shown when there is no matching data -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  
+  <!-- Paginator -->
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of jobs"
+  ></mat-paginator>
+  </div>
+  </div>

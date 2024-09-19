@@ -1,0 +1,15 @@
+<div>
+    <h1 class="page-title">Ajouter une date pour ce candidat</h1>
+  
+    <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Date de réunion</mat-label>
+        <input matInput [matDatepicker]="meetingDatePicker" formControlName="meetingDate" />
+        <mat-datepicker-toggle matSuffix [for]="meetingDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #meetingDatePicker></mat-datepicker>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+    </form>
+  </div>
+  

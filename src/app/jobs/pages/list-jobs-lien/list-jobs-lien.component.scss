@@ -1,20 +1,123 @@
-/* Variables for reuse */
-$border-color: #ccc;
-$background-color: white;
-$box-shadow-color: rgba(0, 0, 0, 0.1);
-$hover-shadow-color: rgba(0, 0, 0, 0.2);
-$primary-color: #333;
-$secondary-color: #666;
-$highlight-color: #1325ca; /* Adjusted highlight color */
-$transition-time: 0.3s;
-$border-radius: 8px;
+/* Main Title Section */
+.main-title-container {
+  text-align: center;
+  margin: 40px 0;
+}
 
-/* Basic styling */
-body {
-  font-family: Arial, sans-serif;
+.main-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.sub-title {
+  font-size: 1.25rem;
+  color: #666;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.55rem;
+  font-weight: bold;
+  color: #140c5c; /* Couleur bleue */
+  margin: 20px 0;
+  text-align: left; /* Aligné à gauche */
+  padding-left: 150px; /* Espacement à gauche */
+}
+
+/* Filter Section */
+.filter-section {
+  padding: 20px 0;
+}
+
+.filter-section mat-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+.filter-buttons button {
   background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #007bff; /* Couleur bleue */
+  transition: background-color 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Profile Name Section */
+.profile-name-section {
+  padding: 20px 0;
+}
+
+.profile-name-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.profile-card-item {
+  flex: 1 1 calc(50% - 20px); /* Deux cartes par ligne avec un espace de 20px */
+  max-width: calc(50% - 20px);
+  box-sizing: border-box;
+  margin-bottom: 5px; /* Espacement en bas pour les lignes */
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card-item:hover {
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card-item mat-card-header {
+  background-color: #eeeeee;
+  border-bottom: 1px solid #dddddd;
+}
+
+.profile-card-item mat-card-title {
+  font-size: 1.2rem; /* Ajuster la taille du texte pour le titre */
+  font-weight: 500;
+  text-align: center;
+  color: #333333;
+}
+
+.profile-card-item mat-card-content {
+  padding: 3px;
+}
+
+/* Job Section */
+.job-section {
+  padding: 20px 0;
 }
 
 .container {
@@ -23,112 +126,83 @@ body {
   padding: 20px;
 }
 
-.page-title {
-  text-align: left;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
 .articles-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  padding: 3%; /* Added padding to match your original example */
 }
 
-.article-wrapper {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-article {
-  position: relative;
-  width: 100%;
-  height: auto;
-  border: 1px solid $border-color;
+.article-card {
   display: flex;
-  background-color: $background-color;
-  box-shadow: 0 4px 8px $box-shadow-color;
-  border-radius: $border-radius;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   overflow: hidden;
-  padding-bottom: 10px;
-  transition: box-shadow $transition-time ease, transform $transition-time ease;
-
-  &:hover {
-    box-shadow: 0 8px 16px $hover-shadow-color;
-    transform: scale(1.02);
-  }
-
-  .article-image-container {
-    width: 30%;
-    height: auto;
-    margin: 16px;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-  }
-
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 70%;
-    padding: 0 15px;
-
-    .article-title {
-      text-align: center;
-      padding: 15px 0;
-      margin: 0;
-      font-size: 24px;
-      color: $primary-color;
-      border-bottom: 2px solid #eee;
-    }
-
-    .article-content {
-      overflow: hidden;
-      text-align: justify;
-      color: $secondary-color;
-    }
-  }
-
-  .read-more-btn {
-    position: absolute;
-    bottom: 7px;
-    right: 7px;
-    padding: 8px 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: all $transition-time ease;
-    font-size: 16px;
-    border-radius: 5px;
-
-    &:hover {
-      background-color: $highlight-color;
-      color: black;
-      border-radius: 30px;
-    }
-  }
-
-  .article-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .date {
-    font-size: 14px;
-    color: #999;
-  }
-  .icon {
-    color: #999;
-    font-size: 16px;
-  }
-  
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.article-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.job-title {
+  font-size: 1,2rem;
+  color: #2f1ec9;
+  text-align: center;
+  flex-grow: 70;
+}
+
+.contract-type {
+  font-size: 1rem;
+  color: #666;
+  text-align: right;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: left;
+}
+
+.expired-message {
+  color: #f44336;
+  font-weight: bold;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #f44336;
+}
+/* Message lorsqu'aucun emploi n'est trouvé */
+.no-jobs-message {
+  color: #f44336;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+.full-page-message {
+  width: 100%;
+  padding: 20px;
+  background-color: #f8d7da; /* Couleur de fond rouge clair pour le message d'erreur */
+  color: #721c24; /* Couleur du texte pour le message d'erreur */
+  text-align: center;
+  border: 1px solid #f5c6cb; /* Bordure rouge clair pour le message d'erreur */
+  border-radius: 4px;
+  margin-bottom: 20px; /* Espace sous le message */
+}
+
+.no-jobs-message {
+  font-size: 18px;
+  font-weight: bold;
+}
+

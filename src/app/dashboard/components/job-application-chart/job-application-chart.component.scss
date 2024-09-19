@@ -1,0 +1,17 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    margin-bottom: 0px; /* Reduce the margin at the bottom */
+  }
+  
+  canvas {
+    width: 1200px !important; /* Adjust the width to fit the screen better */
+    height: 400px !important;  /* Adjust the height as needed */
+  }
+  
+  .mat-card {
+    margin-bottom: 16px; /* Adjust as needed for spacing between cards */
+  }
+  

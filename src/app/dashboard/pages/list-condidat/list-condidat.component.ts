@@ -16,6 +16,9 @@ export interface CondidatData {
   country: string ;
   phoneNumber: string ;
   birthdate:  Date;
+  imageFileName?: string;
+
+  cvFileName?: string;
   
  
 }
@@ -25,7 +28,7 @@ export interface CondidatData {
   styleUrl: './list-condidat.component.scss'
 })
 export class ListCondidatComponent implements OnInit {
-  displayedColumns: string[] = ['id','summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate' , 'actions'];
+  displayedColumns: string[] = ['id','summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate' ,'imageFileName','cvFileName', 'actions'];
 
   dataSource: MatTableDataSource<CondidatData>;
 
@@ -64,6 +67,9 @@ export class ListCondidatComponent implements OnInit {
           country: condidat.country || '',
           phoneNumber: condidat.phoneNumber|| '',
           birthdate: condidat.birthdate || new Date(),
+          imageFileName: condidat.imageFileName || '',
+
+          cvFileName: condidat.cvFileName || '',
         }));
         this.dataSource.data = condidatData;
         console.log(this.dataSource.data);
@@ -80,4 +86,9 @@ export class ListCondidatComponent implements OnInit {
      data: { condidatId: condidatId }
    });
  }
+
+ getImagePath(fileName: string): string {
+  return `http://localhost:5000/UploadedImages/${fileName}`;
+}
+
 }

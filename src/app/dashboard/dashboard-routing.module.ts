@@ -9,6 +9,18 @@ import { JobDetailsPageComponent } from '../jobs/pages/job-details-page/job-deta
 import { ListJobComponent } from './pages/list-job/list-job.component';
 import { ListContractTypesComponent } from './pages/list-contract-types/list-contract-types.component';
 import { ListCondidatComponent } from './pages/list-condidat/list-condidat.component';
+import { AdminQuizComponent } from './pages/admin-quiz/admin-quiz.component';
+import { ListSkillsComponent } from './pages/list-skills/list-skills.component';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
+import { ListQuizComponent } from './pages/list-quiz/list-quiz.component';
+import { AddProfileJobComponent } from './components/add-profile-job/add-profile-job.component';
+import { ListProfileJobComponent } from './pages/list-profile-job/list-profile-job.component';
+import { ListJobApplicationComponent } from './pages/list-job-application/list-job-application.component';
+import { InformationPersoUserComponent } from './components/information-perso-user/information-perso-user.component';
+import { JobApplicationChartComponent } from './components/job-application-chart/job-application-chart.component';
+import { QuizEvaluationComponent } from './components/quiz-evaluation/quiz-evaluation.component';
+import { CondidatMoyenChartComponent } from './components/condidat-moyen-chart/condidat-moyen-chart.component';
 
 const routes: Routes = [
   {
@@ -20,17 +32,17 @@ const routes: Routes = [
         redirectTo: 'modules',
         pathMatch: 'full',
       },
-      {
-        path: 'users',
-        children: [
-          {
-            path: '',
-            redirectTo: 'list',
-            pathMatch: 'full',
-          },
-          { path: 'list', component: ListUsersComponent },
-        ],
-      },
+      // {
+      //   path: 'users',
+      //   children: [
+      //     {
+      //       path: '',
+      //       redirectTo: 'list',
+      //       pathMatch: 'full',
+      //     },
+      //     { path: 'list', component: ListUsersComponent },
+      //   ],
+      // },
 
       {
         path: 'accounts',
@@ -118,8 +130,83 @@ const routes: Routes = [
           },
 
           { path: 'list', component: ListCondidatComponent },
+
+          
         ],
       },
+      {
+        path: 'skills',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListSkillsComponent },
+
+          
+        ],
+      },
+      {
+        path: 'quizs',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListQuizComponent },
+
+          
+        ],
+      },
+      {
+        path: 'ProfileJobs',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListProfileJobComponent },
+
+          
+        ],
+      },
+      {
+        path: 'EmploisDemander',
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+
+          { path: 'list', component: ListJobApplicationComponent },
+
+          
+        ],
+      },
+      
+      { path: 'updateinformation/:userId', component: InformationPersoUserComponent },
+
+      { path: 'AdminQuiz', component: AdminQuizComponent },
+      { path: 'addQuiz/:profileJobId', component: AddQuizComponent },
+      { path: 'addQuestion/:quizId', component: AddQuestionComponent },
+
+      { path: 'addProfileJob', component: AddProfileJobComponent },
+      { path: 'statistics/countByJob', component: JobApplicationChartComponent },
+      { path: 'statistics/condidatmoyen', component: CondidatMoyenChartComponent },
+
+      
+      { path: 'QuizEvaluation/:jobApplicationId', component: QuizEvaluationComponent },
+
+
+      
+      
     ],
   },
 ];

@@ -1,0 +1,72 @@
+<mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+        <span class="page-title">Postuler pour un emploi</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+    <mat-card class="apply-job-card">
+        <div class="wrapper">
+            <div class="container">
+                <h1>Télécharger Votre CV</h1>
+                <div class="upload-container"
+                     (dragover)="onDragOver($event)"
+                     (drop)="onDrop($event)"
+                     (dragleave)="onDragLeave($event)">
+                    <div class="border-container">
+                        <div class="icons fa-4x">
+                            <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
+                            <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
+                            <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
+                        </div>
+                        <p>Glissez et déposez les fichiers ici, ou 
+                            <a href="#" id="file-browser" (click)="triggerFileInput($event)">parcourir</a> votre ordinateur.
+                        </p>
+                        <input type="file" id="file-upload" (change)="onFileSelected($event)" accept="application/pdf" hidden>
+                    </div>
+                </div>
+                <div class="file-info" *ngIf="fileName">
+                    <p>Fichier téléchargé : {{ fileName }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Question and Expandable Sections -->
+        <mat-card class="info-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>info</mat-icon>
+                    <span class="info-text additional-info-text">Souhaitez-vous ajouter des informations supplémentaires ?</span>
+                </mat-card-title>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <!-- Education Section -->
+                <mat-expansion-panel [expanded]="showEducationPanel" class="expansion-panel">
+                    <mat-expansion-panel-header (click)="toggleEducationPanel()">
+                        <mat-panel-title>
+                            Ajouter Éducation
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-add-education *ngIf="showEducationPanel"></app-add-education>
+                </mat-expansion-panel>
+
+                <mat-divider></mat-divider>
+
+                <!-- Professional Experience Section -->
+                <mat-expansion-panel [expanded]="showExperiencePanel" class="expansion-panel">
+                    <mat-expansion-panel-header (click)="toggleExperiencePanel()">
+                        <mat-panel-title>
+                            Ajouter Expérience Professionnelle
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-add-professional-exper *ngIf="showExperiencePanel"></app-add-professional-exper>
+                </mat-expansion-panel>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Submit Button -->
+        <mat-card-actions>
+            <button mat-raised-button color="primary" class="submit-button" (click)="onSubmit()">Postuler</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,6 +1,6 @@
 <form [formGroup]="myForm">
   <mat-dialog-content class="dialog-content">
-    <h1 class="dialog-title">Ajouter Un job</h1>
+    <h1 class="dialog-title">Ajouter Un Emploi</h1>
     <div class="form-fields-container">
       <mat-form-field class="form-field">
         <input matInput #titleInput id="title" placeholder="Titre du job" autocomplete="off" formControlName="title" />
@@ -50,12 +50,25 @@
           <mat-option *ngFor="let user of userData" [value]="user.id">{{ user.firstName }}</mat-option>
         </mat-select>
       </mat-form-field>
-            <!-- firstName utilisateur Column -->
+      <mat-form-field class="form-field">
+        <mat-label>Selectionner Profile necessaire</mat-label>
+        <mat-select formControlName="jobProfileId" required>
+          <mat-option *ngFor="let profileJob of profileJobData" [value]="profileJob.id">{{ profileJob.profileName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+            <!-- firstName utilisateur Column
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Selectionner l'utilisateur necessaire</th>
         <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
-      </ng-container>
+      </ng-container> -->
+
+      <!-- <ng-container matColumnDef="profileName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Selectionner profile necessaire</th>
+        <td mat-cell *matCellDef="let row">{{ row.profileName }}</td>
+      </ng-container> -->
+    
     </div>
+    
   </mat-dialog-content>
   
   <mat-dialog-actions align="center">

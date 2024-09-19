@@ -1,59 +1,89 @@
-
-
-<h4 style="text-align: left; font-size: 24px; font-weight: bold; color: blue;">Offres d'emploi à la une</h4>
-<!-- <div class="articles-container">
-  <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 3%;" *ngFor="let job of jobs">
-      <div class="article-wrapper">
-          <article>
-              <!-- <div class="article-image-container">
-                  <img [src]="job.imageUrl" alt="Article Image">
-              </div> -->
-              <!-- <div class="content-container">
-                  <h3 class="article-title">{{ job.title }}</h3>
-                  <p class="article-content">{{ job.description }}</p>
-                  <button class="read-more-btn">Read More</button>
-              </div>
-          </article>
-      </div>
-  </div>
-</div>  -->
-<!-- //card 2 -->
-<div class="articles-container">
-  <div class="article-wrapper" *ngFor="let job of jobs">
-
-      <article>
-       
-        <div class="article-image-container">
-          <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
-      </div>
-
-     
-          <div class="content-container">
-              <h3 class="article-title">{{ job.title }}</h3>
-              <p class="article-content">{{ job.description }}</p>
-              <button class="read-more-btn" (click)="viewJobDetails(job.id)">Read More</button>
-            </div>
-          <div class="article-header">
-            <label>Date de création:</label>
-
-            <div class="date">{{ job.createdAt }}</div>
-            <div class="icon">
-              <i class="fas fa-clock"></i> <!-- Font Awesome icon -->
-          </div>
-        </div>
-      </article>
-  </div>
-
-  <div class="article-wrapper">
-    <article>
-        <div class="article-image-container">
-            <img src="https://img.freepik.com/free-vector/newspaper-concept-illustration_114360-22666.jpg?w=826" alt="Article Image">
-        </div>
-        <div class="content-container">
-            <h3 class="article-title">Article Title</h3>
-            <p class="article-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-            <!-- <a [routerLink]="['/jobs', job.id]" class="read-more-btn">Read More</a> -->
-          </div>
-    </article>
+<!-- Main Title -->
+<div class="main-title-container">
+  <h1 class="main-title">Trouvez votre emploi de rêve</h1>
+  <!-- <p class="sub-title">Rejoignez le site d'emploi leader au Moyen-Orient</p> -->
 </div>
+
+
+<!-- Profile Name Section -->
+<div class="profile-name-section">
+  <h2 class="section-title">Profils Disponibles</h2>
+  <div class="profile-name-container">
+    <mat-card class="profile-card">
+      <mat-card-content>
+        <div class="profile-cards-container">
+          <mat-card class="profile-card-item" *ngFor="let profile of profileList" (click)="onProfileClick(profile.id)">
+            <mat-card-header>
+              <mat-card-title>{{ profile.profileName }}</mat-card-title>
+            </mat-card-header>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
+
+
+<!-- Job Filtering Section -->
+<!-- <div class="filter-section">
+  <h2 class="section-title">Emplois par Intitulé du Poste</h2>
+  <mat-card>
+    
+    <mat-card-content>
+      <div class="filter-buttons">
+        <button mat-button *ngFor="let letter of letters" (click)="filterJobs(letter)">
+          {{ letter }}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+<!-- Job Section -->
+<!-- Job Section -->
+<div class="job-section">
+  <h2 class="section-title">Intitulés de Poste Populaires</h2>
+  <div class="container">
+    <div class="articles-container">
+      <div *ngIf="noProfileJobsMessage" class="full-page-message">
+        <p class="no-jobs-message">{{ noProfileJobsMessage }}</p>
+      </div>
+      <!-- Message lorsqu'aucun emploi n'est trouvé -->
+      <p *ngIf="noJobsMessage" class="no-jobs-message">{{ noJobsMessage }}</p>
+      
+      <mat-card class="article-card" *ngFor="let job of paginatedJobs">
+        <mat-card-header>
+          <div class="header-content">
+            <mat-card-subtitle class="date">{{ job.createdAt | date }}</mat-card-subtitle>
+            <mat-card-title class="job-title">{{ job.title }}</mat-card-title>
+            <mat-card-subtitle class="contract-type">{{ job.designation }}</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ job.description }}</p>
+          <div *ngIf="isJobExpired(job.expirationDate)" class="expired-message">
+            Cet emploi est expiré
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button 
+            mat-button 
+            color="primary" 
+            (click)="viewJobDetails(job.id, job.jobProfileId)" 
+            [disabled]="isJobExpired(job.expirationDate)">
+            Lire la suite
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of jobs"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>
+

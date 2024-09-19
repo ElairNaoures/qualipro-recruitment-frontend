@@ -22,9 +22,11 @@ export interface LoginResponseModel {
   message?: string;
   accessToken?: string;
   userInfo?: UserInfo;
+  
 }
 
 export interface UserInfo {
+  userId?: number;
   firstName?: string;
   lastName?: string;
   country?: string;

@@ -15,4 +15,8 @@ export interface JobModel {
     //user
     userId?: number;
     firstName?: string;
+
+    jobProfileId?: number | null;
+    profileName?: string; 
+    
 }

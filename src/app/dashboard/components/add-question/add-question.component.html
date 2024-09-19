@@ -1,0 +1,73 @@
+<div class="section-container">
+  <div class="title-container">
+    <h4>Ajouter plusieurs Questions</h4>
+  </div>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <section class="example-flex-container">
+    <div class="example-button-row">
+      <button mat-icon-button color="primary" (click)="addQuestion()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="removeLastQuestion()">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+  </section>
+
+  <div class="mat-elevation-z8">
+    <mat-card>
+      <!-- <mat-card-content>
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+          <div formArrayName="questions">
+            <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i">
+              <div class="question-fields">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Nom de la Question</mat-label>
+                  <input matInput formControlName="questionName" required>
+                  <mat-error *ngIf="question.get('questionName')?.hasError('required')">
+                    Le nom de la question est requis
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Coefficient</mat-label>
+                  <input matInput formControlName="coefficient" type="number">
+                </mat-form-field>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Ajouter</button>
+        </form>
+      </mat-card-content> -->
+      <mat-card-content>
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+          <div formArrayName="questions">
+            <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i">
+              <div class="question-fields">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Nom de la Question</mat-label>
+                  <input matInput formControlName="questionName" required>
+                  <mat-error *ngIf="question.get('questionName')?.hasError('required')">
+                    Le nom de la question est requis
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Coefficient</mat-label>
+                  <input matInput formControlName="coefficient" type="number">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Ajouter</button>
+                </div>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -25,6 +25,11 @@ export class UserService {
     const url = `${this.url}?userIds=${filteredUserIds.join(',')}`;
     return this.http.get<UserModel[]>(url);
   }
+
+  getUserById(userId: number): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.url}/${userId}`);
+  }
+  
   addUser(user: UserModel): Observable<UserModel> {
     let url = `${this.url}`;
     return this.http.post<UserModel>(url, user);
@@ -32,9 +37,13 @@ export class UserService {
 
  
 
-  updateUser(userId: number, user: UserModel) {
-    let url = `${this.url}/${userId}`;
-    return this.http.put<UserModel>(url, user);
+  // updateUser(userId: number, user: UserModel) {
+  //   let url = `${this.url}/${userId}`;
+  //   return this.http.put<UserModel>(url, user);
+  // }
+
+  updateUser(id: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.url}/${id}`, formData);
   }
 
   deleteUser(userId: number) {

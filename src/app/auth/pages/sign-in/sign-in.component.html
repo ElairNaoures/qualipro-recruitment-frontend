@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <title>Centered Wrapper</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <title>Login</title>
 </head>
 <body>
-    <div class="background">
-        <div class="wrapper">
-            <form [formGroup]="form">
-                <h2>Login</h2>
-                <div class="input-text">
-                    <i class="material-icons">email</i>
-                    <input type="email" formControlName="email">
-                    <label>Enter your email</label>
-                </div>
-                <div class="input-text">
-                    <i class="material-icons">lock</i>
-                    <input type="password" formControlName="password">
-                    <label>Enter your password</label>
-                </div>
-                <div class="fget">
-                    <label for="remember">
-                        <input type="checkbox" class="remember">
-                        <p>Remember me</p>
-                    </label>
-                    <a href="#">Forgot password?</a>
-                </div>
-                <button type="submit" (click)="login()"> Log in</button>
-                <div class="register">
-                    <p>Don have an account? <a href="#">Register</a></p>
-                </div>
-            </form>
-        </div>
+  <div class="background">
+    <div class="wrapper">
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <h2>Login</h2>
+            <div class="input-text">
+              <i class="material-icons">email</i>
+              <input id="email" type="email" formControlName="email" />
+              <label for="email">Enter your email</label>
+            </div>
+            <div class="input-text">
+              <i class="material-icons">lock</i>
+              <input id="password" type="password" formControlName="password" />
+              <label for="password">Enter your password</label>
+            </div>
+            <div class="fget">
+              <label for="remember">
+                <input id="remember" type="checkbox" class="remember" />
+                <p>Remember me</p>
+              </label>
+              <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit">Log in</button>
+            <div class="register">
+              <p>Don't have an account? <a href="auth/sign-up">Register</a></p>
+            </div>
+          </form>
+          
+          
+          
+          
     </div>
+  </div>
 </body>
 </html>

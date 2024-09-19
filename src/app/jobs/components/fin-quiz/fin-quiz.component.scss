@@ -1,0 +1,18 @@
+.fin-quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px; // Ajoute un padding pour éviter que le contenu touche les bords de l'écran
+  }
+  
+  .finish-card {
+    max-width: 600px; // Limite la largeur maximale du card pour les grands écrans
+    width: 100%; // S'assure que la carte utilise la largeur disponible mais ne dépasse pas la largeur maximale
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Ajoute une ombre subtile à la carte pour la mise en valeur
+    background-color: #fff; // Définit un fond blanc pour une bonne visibilité du texte
+  }
+  

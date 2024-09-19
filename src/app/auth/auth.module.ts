@@ -20,7 +20,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PrimengModule } from '../shared/modules/primeng.module';
 import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule , Routes} from '@angular/router';
 import { SignInAdminComponent } from './pages/sign-in-admin/sign-in-admin.component';
 import { SignUpAdminComponent } from './pages/sign-up-admin/sign-up-admin.component';
 
@@ -34,7 +34,6 @@ import { SignUpAdminComponent } from './pages/sign-up-admin/sign-up-admin.compon
     SignUpAdminComponent,
   ],
   imports: [
-  
     AuthRoutingModule,
     MaterialModule,
     DialogModule, 

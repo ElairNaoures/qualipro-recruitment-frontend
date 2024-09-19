@@ -25,7 +25,22 @@ import { ProfileCondidatPageComponent } from './pages/profile-condidat-page/prof
 import { InformationPersoCondidatComponent } from './components/information-perso-condidat/information-perso-condidat.component';
 import { ExperienceProfCondidatComponent } from './components/experience-prof-condidat/experience-prof-condidat.component';
 import { EducationCondidatComponent } from './components/education-condidat/education-condidat.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CandidatedetailComponent } from './components/candidatedetail/candidatedetail.component';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { ApplyJobComponent } from './components/apply-job/apply-job.component';
+import { AddEducationComponent } from './components/add-education/add-education.component';
+import { AddProfessionalExperComponent } from './components/add-professional-exper/add-professional-exper.component';
+import { CandidateQuizComponent } from './components/candidate-quiz/candidate-quiz.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReponseCondidatComponent } from './components/reponse-condidat/reponse-condidat.component';
+import { FinQuizComponent } from './components/fin-quiz/fin-quiz.component';
 
 @NgModule({
   declarations: [
@@ -37,19 +52,31 @@ import { EducationCondidatComponent } from './components/education-condidat/educ
     InformationPersoCondidatComponent,
     ExperienceProfCondidatComponent,
     EducationCondidatComponent,
+    CandidatedetailComponent,
+    ApplyJobComponent,
+    
+    AddEducationComponent,
     
    
-  
+    AddProfessionalExperComponent,
+               CandidateQuizComponent,
+               ReponseCondidatComponent,
+               FinQuizComponent,
    // LayoutComponent
     
 
   ],
   imports: [
+    MatSnackBarModule,
 
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatSelectModule,
+   MatExpansionModule,
+    
+    MatIconModule,
    // BrowserAnimationsModule,
 
     CommonModule,
@@ -64,7 +91,14 @@ import { EducationCondidatComponent } from './components/education-condidat/educ
     RippleModule,
     AvatarModule,
     StyleClassModule,
+    
 
+    
+  
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
 
   ]
 })

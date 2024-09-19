@@ -26,12 +26,16 @@ export class CondidatService {
     getCondidatById(condidatId: number): Observable<CondidatModel> {
       return this.http.get<CondidatModel>(`${this.url}/${condidatId}`);
     }
-
-    updateCondidat(condidatId: number, condidat: CondidatModel) {
-      let url = `${this.url}/${condidatId}`;
-      return this.http.put<CondidatModel>(url, condidat);
+   
+  
+    // updateCondidat(condidatId: number, condidat: CondidatModel) {
+    //   let url = `${this.url}/${condidatId}`;
+    //   return this.http.put<CondidatModel>(url, condidat);
+    // }
+    updateCondidat(id: number, formData: FormData): Observable<any> {
+      return this.http.put(`${this.url}/${id}`, formData);
     }
-
+   
     deleteCondidat(condidatId: number) {
       let url = `${this.url}/${condidatId}`;
       return this.http.delete<any>(url);

@@ -1,0 +1,91 @@
+<div class="container">
+    <!-- Première partie horizontale -->
+    
+      <div class="row" style="display: flex; justify-content: center;align-items: center; width: 100%">
+        <!-- Message de salutation -->
+        <div class="col-md-12" style="margin-top: 4%;">
+          <!--<h1>Bienvenue !</h1>-->
+          <h3>tu veut modifier cet competence ! :</h3>
+        </div>
+      </div>
+      <form [formGroup]="skillForm">
+      <div class="col-md-12" style="display: flex;justify-content: center;align-items: center;">
+      <!-- Première colonne -->
+      <div class="col-md-3">
+        
+         
+  
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier ce Nom</h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Modifier Ce name"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+  
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">
+              Modifier l'etat de compétence technique
+            </h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="technicalSkill"
+                placeholder="Modifier le  compétence technique"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+       
+      </div>
+  
+      <!-- Deuxième colonne -->
+      <div style="display: flex; flex-direction: column">
+        <mat-dialog-content class="dialog-content">
+          <h5 class="dialog-title">Modifier l'etat Compétences générales</h5>
+          <mat-form-field class="form-field">
+            <input
+              matInput
+              formControlName="softSkill"
+              placeholder="Modifier Ce Compétences générales"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </mat-dialog-content>
+  
+        <mat-dialog-content class="dialog-content">
+          <h5 class="dialog-title">Modifier competence</h5>
+          <mat-form-field class="form-field">
+            <input
+              matInput
+              formControlName="toolsSkill"
+              placeholder="Modifier Cet etat de competence"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </mat-dialog-content>
+  
+       
+      </div>
+      
+    </div>
+</form>
+  </div>
+  <div style="display: flex; justify-content: center;align-items: center; width: 100%">
+      <mat-dialog-actions >
+          <div class="button-container" style="width: 100%">
+            <button mat-flat-button color="primary" (click)="updateSkill()">
+              Valider
+            </button>
+            <button mat-flat-button color="warn" (click)="closeDialog()">
+              Annuler
+            </button>
+          </div>
+        </mat-dialog-actions>
+  </div>
+  
+  

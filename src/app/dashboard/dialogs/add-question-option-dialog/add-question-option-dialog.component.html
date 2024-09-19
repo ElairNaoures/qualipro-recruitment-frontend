@@ -1,0 +1,41 @@
+<mat-dialog-content class="dialog-content">
+    <h1 class="dialog-title">Ajouter des options pour cette question</h1>
+    
+    <section class="example-flex-container">
+      <div class="example-button-row">
+        <button mat-icon-button color="primary" (click)="addOption()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removeLastOption()">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </section>
+  
+    <form [formGroup]="optionForm">
+      <div formArrayName="options">
+        <div *ngFor="let option of options.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Option</mat-label>
+            <input matInput formControlName="optionName" placeholder="Option" required>
+            <mat-error *ngIf="option.get('optionName')?.hasError('required')">
+              Le nom de l'option est requis
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Case à cocher pour sélectionner l'option correcte -->
+          <mat-checkbox formControlName="isCorrect" (change)="onCorrectOptionChange(i)">
+            Option correcte
+          </mat-checkbox>
+  
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="center">
+    <button mat-flat-button color="primary" (click)="saveOptions()">Valider</button>
+    <button mat-flat-button color="warn" (click)="closeDialogAndNavigate()">Annuler</button>
+  </mat-dialog-actions>
+  

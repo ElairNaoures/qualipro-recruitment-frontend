@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <span class="page-title">Votre Quiz</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="main-container">
+  <div class="quiz-container">
+    <mat-card class="quiz-card">
+      <mat-card-content>
+        <!-- Ensure quizzes and the current quiz are defined and have questions -->
+        <div *ngIf="quizzes && quizzes.length > 0 && currentQuizIndex >= 0 && currentQuizIndex < quizzes.length">
+          <div *ngIf="quizzes[currentQuizIndex]?.questions && quizzes[currentQuizIndex].questions.length > 0 && currentQuestionIndex >= 0 && currentQuestionIndex < quizzes[currentQuizIndex].questions.length">
+            
+            <!-- Use quizzes[currentQuizIndex].questions[currentQuestionIndex] for the current question -->
+            <h2>{{ quizzes[currentQuizIndex].questions[currentQuestionIndex].questionName }}</h2>
+            
+            <mat-radio-group [(ngModel)]="selectedAnswers[quizzes[currentQuizIndex].questions[currentQuestionIndex].id]" (change)="selectAnswer(quizzes[currentQuizIndex].questions[currentQuestionIndex].id, $event.value)">
+              <!-- Loop over question options and display them -->
+              <mat-radio-button 
+                *ngFor="let option of quizzes[currentQuizIndex].questions[currentQuestionIndex].questionOptions" 
+                [value]="option.id">
+                {{ option.questionOptionName }}
+              </mat-radio-button>
+            </mat-radio-group>
+
+            <div class="button-container">
+              <!-- Disable the button if no answer is selected -->
+              <button mat-raised-button color="primary" (click)="nextQuestion()" [disabled]="!selectedAnswers[quizzes[currentQuizIndex].questions[currentQuestionIndex].id]">
+                {{ isLastQuestion ? 'Soumettre' : 'Question suivante' }}
+              </button>
+              
+              <!-- Show the confirmer button only on the last question -->
+              <button mat-raised-button color="accent" *ngIf="isLastQuestion" (click)="confirmQuiz()">
+                Confirmer
+              </button>
+            </div>
+          </div>
+
+          <!-- Show summary when all questions are answered -->
+          <div *ngIf="currentQuestionIndex >= quizzes[currentQuizIndex].questions.length" class="quiz-summary">
+            <h2>Test terminé, bonne chance !</h2>
+            <p>Votre score est {{ score }} sur {{ quizzes[currentQuizIndex]?.questions?.length || 0 }}</p>
+            <button mat-raised-button color="accent" (click)="resetQuiz()">
+              Recommencer
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="chrono-container">
+    <mat-card class="chrono-card">
+      <mat-card-content>
+        <div class="chrono">
+          <span class="chronometer">{{ minutes }}</span>
+          <span class="separator">:</span>
+          <span class="chronometer">{{ seconds }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

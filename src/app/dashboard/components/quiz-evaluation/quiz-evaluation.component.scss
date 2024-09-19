@@ -1,0 +1,68 @@
+.page-container {
+ display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f6f9;
+}
+
+.content-container {
+  flex: 1;
+  overflow: auto;
+  margin-top: 20px;
+}
+
+.evaluation-card {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.evaluation-details {
+  margin-right: 150px; /* Create space for the score button */
+}
+
+// .total-score-card {
+//   background-color: #e3f2fd;
+//   margin-top: 20px;
+// }
+.total-score-card {
+  background-color: #addfcb; /* Changer la couleur de fond pour attirer l’attention */
+  margin-top: 20px;
+  padding: 20px; /* Ajouter du padding pour plus de visibilité */
+  border-radius: 10px; /* Ajouter des coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre portée pour faire ressortir la carte */
+  text-align: center; /* Centrer le texte */
+}
+
+.total-score-card p {
+  font-size: 1.5rem; /* Augmenter la taille de la police pour le score total */
+  font-weight: bold; /* Mettre le texte en gras pour plus de visibilité */
+  color: #144933; /* Utiliser une couleur contrastante pour le texte */
+}
+
+.note-input {
+  width: 100%;
+  margin-right: 20px;
+}
+
+.score-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+mat-paginator {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.error-card {
+  background-color: #f8d7da;
+  color: #721c24;
+}

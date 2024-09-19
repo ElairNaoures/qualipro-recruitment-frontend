@@ -1,58 +1,121 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-  }
-  
-  .example-is-mobile .example-toolbar {
-    position: fixed;
-    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-    z-index: 2;
-  }
-  
-  h1.example-app-name {
-    margin-left: 8px;
-  }
-  
-  .example-sidenav-container {
-    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-    flex: 1;
-  }
-  
-  .example-is-mobile .example-sidenav-container {
-    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-       `<body>` to be our scrolling element for mobile layouts. */
-    flex: 1 0 auto;
-  }
-  .example-toolbar {
-    display: flex;
-    justify-content: space-between;
-  }
-  .spacer {
-    flex: 1 1 auto;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  .custom-button {
-    font-size: 12px; /* Ajustez la taille de la police selon vos besoins */
-    padding: 8px 16px; /* Ajustez le padding pour la taille du bouton */
-    background-color: rgb(28, 28, 179); /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    border: none; /* Retirer la bordure par défaut */
-    border-radius: 4px; /* Ajout d'un arrondi aux coins */
-    text-align: center; /* Centrer le texte */
-    text-decoration: none; /* Retirer la décoration de lien par défaut */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 600px;
+  text-align: center;
+}
+
+.example-sidenav-container {
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+}
+
+.example-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.custom-button {
+  font-size: 12px;
+  padding: 8px 16px;
+  background-color: rgb(28, 28, 179);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .custom-button:hover {
-    background-color: darkblue; /* Couleur de fond au survol */
+  background-color: darkblue;
+}
+
+.mat-nav-list a {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.side-nav-icon {
+  font-size: 18px;
+  margin-right: 10px;
+  color: rgba(170, 170, 231, 0.5);
+  padding-top: 5px;
+}
+
+.mat-nav-list a span {
+  flex: 1;
+  font-size: 16px;
+}
+
+.statistic-item {
+  font-size: 1rem;
+}
+
+.notification-count {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.notification-content {
+  min-width: 200px;
+  max-width: 1000px;
+}
+
+.notification-message {
+  font-size: 14px;
+  line-height: 1.5;
+  width: 600px;
+}
+
+.notification-icon {
+  color: red;
+}
+
+.notification-icon-read {
+  color: gray;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.mat-icon-button {
+  margin-right: 8px;
+  color: rgba(170, 170, 231, 0.5);
+
 }

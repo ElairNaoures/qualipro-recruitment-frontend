@@ -1,0 +1,41 @@
+<div class="section-container">
+    <div class="title-container">
+      <h4>Ajouter plusieurs Quiz</h4>
+    </div>
+    <br />
+    <mat-divider></mat-divider>
+    <br />
+    <section class="example-flex-container">
+      <div class="example-button-row">
+        <button mat-icon-button color="primary" (click)="addQuiz()">
+          <mat-icon>add</mat-icon> <!-- Icône pour ajouter -->
+        </button>
+        <button mat-icon-button color="warn" (click)="removeLastQuiz()">
+          <mat-icon>remove</mat-icon> <!-- Icône pour supprimer -->
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+    </section>
+    <div class="mat-elevation-z8">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="quizzes">
+              <div *ngFor="let quiz of quizzes.controls; let i = index" [formGroupName]="i">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Nom du Quiz</mat-label>
+                  <input matInput formControlName="quizName" required>
+                  <mat-error *ngIf="quiz.get('quizName')?.hasError('required')">
+                    Le nom du quiz est requis
+                  </mat-error>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+              </div>
+            </div>
+            <button mat-raised-button color="primary" type="submit">Ajouter</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

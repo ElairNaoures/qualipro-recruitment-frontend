@@ -1,48 +1,97 @@
+<!-- src/app/components/add-user-dialog/add-user-dialog.component.html -->
 <form [formGroup]="myForm">
-    <mat-dialog-content class="dialog-content">
-      <h1 class="dialog-title">Ajouter un utilisateur</h1>
-      <div class="form-fields-container">
-        <mat-form-field class="form-field">
-          <mat-label>Prénom</mat-label>
-          <input matInput id="firstName" placeholder="Prénom" autocomplete="off" formControlName="firstName" />
-        </mat-form-field>
-  
-        <mat-form-field class="form-field">
-          <mat-label>Nom</mat-label>
-          <input matInput id="lastName" placeholder="Nom" autocomplete="off" formControlName="lastName" />
-        </mat-form-field>
-  
-        <mat-form-field class="form-field">
-          <mat-label>Pays</mat-label>
-          <input matInput id="country" placeholder="Pays" autocomplete="off" formControlName="country" />
-        </mat-form-field>
-  
-        <mat-form-field class="form-field">
-          <mat-label>Numéro de téléphone</mat-label>
-          <input matInput id="phoneNumber" placeholder="Numéro de téléphone" autocomplete="off" formControlName="phoneNumber" />
-        </mat-form-field>
-  
-        <mat-form-field class="form-field">
-          <mat-label>Date de naissance</mat-label>
-          <input matInput [matDatepicker]="birthdatePicker" id="birthdate" placeholder="Date de naissance" autocomplete="off" formControlName="birthdate" />
-          <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #birthdatePicker></mat-datepicker>
-        </mat-form-field>
-        <select formControlName="roleId" required>
-					<option *ngFor="let role of roleData" [value]="role.id">{{ role.roleName }}</option>
-				  </select>
-      </div>
-    </mat-dialog-content>
-  
-    <mat-dialog-actions align="center">
-      <div class="button-container" style="width: 100%">
-        <button mat-flat-button color="primary" (click)="addUser()">
-          Valider
-        </button>
-        <button mat-flat-button color="warn" (click)="closeDialog()">
-          Annuler
-        </button>
-      </div>
-    </mat-dialog-actions>
-  </form>
-  
+  <mat-dialog-content class="dialog-content">
+    <h1 class="dialog-title">Ajouter un utilisateur</h1>
+    <div class="form-fields-container">
+
+      <mat-form-field class="form-field">
+        <mat-label>Prénom</mat-label>
+        <input matInput id="firstName" placeholder="Prénom" autocomplete="off" formControlName="firstName" />
+        <mat-error *ngIf="myForm.get('firstName')?.hasError('required')">
+          Prénom est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Nom</mat-label>
+        <input matInput id="lastName" placeholder="Nom" autocomplete="off" formControlName="lastName" />
+        <mat-error *ngIf="myForm.get('lastName')?.hasError('required')">
+          Nom est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Pays</mat-label>
+        <input matInput id="country" placeholder="Pays" autocomplete="off" formControlName="country" />
+        <mat-error *ngIf="myForm.get('country')?.hasError('required')">
+          Pays est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput id="phoneNumber" placeholder="Numéro de téléphone" autocomplete="off" formControlName="phoneNumber" />
+        <mat-error *ngIf="myForm.get('phoneNumber')?.hasError('required')">
+          Numéro de téléphone est requis.
+        </mat-error>
+        <mat-error *ngIf="myForm.get('phoneNumber')?.hasError('minlength')">
+          Numéro de téléphone doit comporter au moins 8 caractères.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" id="password" placeholder="Mot de passe" autocomplete="off" formControlName="password" />
+        <mat-error *ngIf="myForm.get('password')?.hasError('required')">
+          Mot de passe est requis.
+        </mat-error>
+        <mat-error *ngIf="myForm.get('password')?.hasError('minlength')">
+          Mot de passe doit comporter au moins 6 caractères.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" id="email" placeholder="Email" autocomplete="off" formControlName="email" />
+        <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+          Email est requis.
+        </mat-error>
+        <mat-error *ngIf="myForm.get('email')?.hasError('email')">
+          Adresse email invalide.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Date de naissance</mat-label>
+        <input matInput [matDatepicker]="birthdatePicker" id="birthdate" placeholder="Date de naissance" autocomplete="off" formControlName="birthdate" />
+        <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdatePicker></mat-datepicker>
+        <mat-error *ngIf="myForm.get('birthdate')?.hasError('required')">
+          Date de naissance est requise.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Rôle</mat-label>
+        <mat-select formControlName="roleId">
+          <mat-option *ngFor="let role of roleData" [value]="role.id">{{ role.roleName }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('roleId')?.hasError('required')">
+          Le rôle est requis.
+        </mat-error>
+      </mat-form-field>
+      
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="center">
+    <div class="button-container" style="width: 100%">
+      <button mat-flat-button color="primary" (click)="addUser()">
+        Valider
+      </button>
+      <button mat-flat-button color="warn" (click)="closeDialog()">
+        Annuler
+      </button>
+    </div>
+  </mat-dialog-actions>
+</form>

@@ -26,7 +26,7 @@ export class DeleteJobDialogComponent {
       () => {
         console.log('job deleted successfully');
         this.dialogRef.close(true);
-        this.snackBar.open('Le job a été supprimé avec succès', 'Fermer', {
+        this.snackBar.open('Le emploi a été supprimé avec succès', 'Fermer', {
           duration: 3000
         });
         
@@ -53,5 +53,6 @@ export class DeleteJobDialogComponent {
     this.dialogRef.close(false);
   }
 }  
+
 
 

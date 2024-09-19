@@ -1,0 +1,14 @@
+<div class="fin-quiz-container">
+    <mat-card class="finish-card">
+      <mat-card-title>Quiz terminé !</mat-card-title>
+      <mat-card-content>
+        <p>Félicitations, vous avez terminé le quiz.</p>
+        <p>Bonne chance pour la suite !</p>
+        <p>Déconnexion automatique dans {{ minutes }}:{{ seconds | number: '2.0' }} minutes</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="logout()">Se déconnecter maintenant</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

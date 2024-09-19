@@ -13,6 +13,8 @@ export class JobService {
   url = `${environment.baseUrl}/api/Job`;
 
   constructor(private http: HttpClient) { }
+
+  
     getAllJobs() {
       
       let url = `${this.url}`;
@@ -25,8 +27,17 @@ export class JobService {
       return this.http.get<JobModel>(url);
     }
   
+    getJobsByProfile(profileName: string): Observable<JobModel[]> {
+      return this.http.get<JobModel[]>(`${this.url}/by-profile?profileName=${profileName}`);
+    }
   
-  
+    getJobsByProfileId(profileId: number): Observable<JobModel[]> {
+      return this.http.get<JobModel[]>(`${this.url}/profile/${profileId}`);
+    }
+  // Méthode pour obtenir les emplois filtrés par lettre
+  getJobsByLetter(letter: string): Observable<{ jobs: JobModel[], total: number }> {
+    return this.http.get<{ jobs: JobModel[], total: number }>(`${this.url}/filter?letter=${letter}`);
+  }
     addJob(job: JobModel) {
       let url = `${this.url}`;
       return this.http.post<JobModel>(url, job);

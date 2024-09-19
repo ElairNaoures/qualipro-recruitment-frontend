@@ -1,0 +1,33 @@
+
+<form [formGroup]="profileJobForm">
+    <mat-dialog-content class="dialog-content">
+      <h1 class="dialog-title">Modifier Profile</h1>
+      <mat-form-field class="form-field">
+        
+          <input matInput formControlName="profileName"  placeholder="Modifier Ce Profile" autocomplete="off">
+      </mat-form-field>
+    </mat-dialog-content>
+    
+    
+    
+  
+  
+  
+  </form>
+  
+  <mat-dialog-actions style="display: flex; justify-content: center; width: 100%;">
+    <div class="button-container" style="width: 100%">
+    <button mat-flat-button
+             color="primary"  
+             (click)="updateProfileJob()">
+             
+             Valider
+            
+    </button>
+    <button mat-flat-button color="warn" 
+             (click)="closeDialog()">
+     
+             Annuler
+    </button>
+  </div>
+  </mat-dialog-actions>

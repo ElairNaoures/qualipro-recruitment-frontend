@@ -19,6 +19,7 @@ export interface JobData {
  userId: number;
   firstName: string;
   lastName: string;
+  
 
   
 }
@@ -74,7 +75,7 @@ export class ListJobsComponent implements OnInit {
           createdAt: job.createdAt || new Date(),
           userId: job.userId || 0,
           firstName: '',
-          lastName: '',
+           lastName: '',
         }));
         this.dataSource.data = jobData;
         console.log(this.dataSource.data);

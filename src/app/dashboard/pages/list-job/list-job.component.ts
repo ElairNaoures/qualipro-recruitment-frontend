@@ -69,6 +69,9 @@ export class ListJobComponent implements OnInit {
           userId: job.userId || 0,
           firstName: '', 
           lastName: '',
+          jobProfileId: job.jobProfileId || 0,
+          profileName: '', 
+          
         }));
         this.dataSource.data = jobData;
         console.log(this.dataSource.data);

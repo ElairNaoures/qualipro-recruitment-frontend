@@ -11,6 +11,8 @@ import { ContractTypeData } from '../../pages/list-contract-types/list-contract-
 import { UserData } from '../../pages/list-users/list-users.component';
 import { UserModel } from '../../../shared/models/user.model';
 import { UserService } from '../../../shared/services/user.service';
+import { ProfileJobModel } from '../../../shared/models/profile-job-model';
+import { ProfileJobService } from '../../../shared/services/profile-job.service';
 
 @Component({
   selector: 'app-add-job-dialog',
@@ -20,17 +22,22 @@ import { UserService } from '../../../shared/services/user.service';
 export class AddJobDialogComponent {
   myForm!: FormGroup;
   visible: boolean = false;
+
   listLanguages =  languages;
   contractTypeData: ContractTypeData[] = [];
   userData: UserData[] = [];
+  profileJobData: ProfileJobModel[] = [];
+
   constructor(
     private dialogRef: MatDialogRef<AddJobDialogComponent>,
     private jobService: JobService,
     private snackBar: MatSnackBar ,
     private contractTypeService: ContractTypeService,
-    private userService: UserService
+    private userService: UserService,
+    private profileJobService: ProfileJobService
   ) {}
   ngOnInit(): void {
+    this.getAllProfileJobs();
     this.getAllUsers();
     this.getAllContractTypes();
     this.visible  = false; 
@@ -56,8 +63,8 @@ export class AddJobDialogComponent {
     contractTypeId: this.myForm.get("contractTypeId")?.value,
 
     userId: this.myForm.get("userId")?.value,
-
-
+    jobProfileId: this.myForm.get("jobProfileId")?.value,
+    
     }
     console.log("after join",job_data); 
 
@@ -81,6 +88,8 @@ export class AddJobDialogComponent {
       expirationDate: new FormControl('', Validators.required),
       contractTypeId: new FormControl('', Validators.required),
       userId: new FormControl('', Validators.required),
+      jobProfileId: new FormControl('', Validators.required),
+
 
     });
   }
@@ -116,6 +125,24 @@ export class AddJobDialogComponent {
           phoneNumber: user.phoneNumber || '',
           birthdate: user.birthdate || '',
           roleName: user.roleName || '',
+
+          
+          
+        }));
+      },
+      error: err => {
+        console.log('Error:', err);
+      },
+    });
+  }
+
+  getAllProfileJobs() {
+    this.profileJobService.getAllProfileJobs().subscribe({
+      next: (res: ProfileJobModel[]) => {
+        this.profileJobData = res.map(profileJob => ({
+          id: profileJob.id || 0,
+          profileName: profileJob.profileName || '',
+    
 
           
           

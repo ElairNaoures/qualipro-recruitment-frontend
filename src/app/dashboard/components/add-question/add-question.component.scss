@@ -1,0 +1,59 @@
+.section-container {
+    margin: 20px;
+    padding: 10px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title-container h4 {
+    margin: 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-button-row {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .mat-card {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .mat-card-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
+  .question-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement vertical entre les champs */
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .example-button-row {
+    display: flex;
+    gap: 8px;
+  }
+  
+  mat-icon {
+    font-size: 24px;
+  }
+  

@@ -1,0 +1,97 @@
+<div class="section-container">
+    <div class="title-container">
+      <!-- <h4>Liste des emplois demandés</h4> -->
+    </div>
+    <br />
+    <mat-divider></mat-divider>
+    <br />
+    <section class="example-flex-container">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search by name" #input />
+      </mat-form-field>
+    </section>
+  
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+        
+  
+        <!-- Candidate Name Column -->
+        <ng-container matColumnDef="condidat">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Condidat</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.condidat?.firstName }} {{ row.condidat?.lastName }}
+          </td>
+        </ng-container>
+  
+        <!-- Job Title Column -->
+        <ng-container matColumnDef="emploi demander">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Emploi demandé</th>
+          <td mat-cell *matCellDef="let row">{{ row.job?.title }}</td>
+        </ng-container>
+  
+        <!-- Date Column -->
+        <ng-container matColumnDef="date entretien">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date d'entretien</th>
+          <td mat-cell *matCellDef="let row">{{ row.meetingDate | date }}</td>
+        </ng-container>
+        <!-- Ajouter Note Column -->
+        <ng-container matColumnDef="ajouterNote">
+            <th mat-header-cell *matHeaderCellDef>Ajouter Note</th>
+            <td mat-cell *matCellDef="let row">
+            <button
+                mat-icon-button
+                matTooltip="Ajouter un note"
+                color="primary"
+                (click)="addNote(row.id)"
+            >
+                <mat-icon>add_circle</mat-icon>
+            </button>
+            
+            </td>
+        </ng-container>
+  
+        <!-- Add Date Column -->
+        <ng-container matColumnDef="ajouter Date">
+          <th mat-header-cell *matHeaderCellDef>Ajouter Date</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="openAddDateDialog(row.id)">
+              <mat-icon class="custom-icon-color">calendar_today</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <!-- Placeholder for Edit/Delete buttons -->
+            <button
+            mat-icon-button
+            matTooltip="Click to Delete"
+            color="warn"
+            (click)="openDeleteJobApplication(row.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6">No data matching the filter "{{ input.value }}"</td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </div>
+  

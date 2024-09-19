@@ -29,12 +29,18 @@ import { MaterialModule } from './shared/modules/material.module';
 import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
     
+    
   ],
   imports: [
+    MatMenuModule,
+    MatSnackBarModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -50,26 +56,17 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
     MatInputModule, 
     MatNativeDateModule,  
     MatFormFieldModule,
-
+    MatExpansionModule,
     MatCardModule,
     MatFormFieldModule,
     
-    MatMenuModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatMenuModule,
+   
 
-
-    
-    
-   
-    
-   
-   
-    
     MatButtonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
