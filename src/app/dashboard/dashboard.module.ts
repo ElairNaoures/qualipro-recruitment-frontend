@@ -82,6 +82,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NotificationDialogComponent } from './dialogs/notification-dialog/notification-dialog.component';
 
 import { MatMenuModule } from '@angular/material/menu';
+import { DeleteQuestionDialogComponent } from './dialogs/delete-question-dialog/delete-question-dialog.component';
+import { UpdateQuestionDialogComponent } from './dialogs/update-question-dialog/update-question-dialog.component';
+import { InformationjobComponent } from './components/informationjob/informationjob.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +140,9 @@ import { MatMenuModule } from '@angular/material/menu';
      NoQuizAvailableDialogComponent,
      CondidatMoyenChartComponent,
      NotificationDialogComponent,
+     DeleteQuestionDialogComponent,
+     UpdateQuestionDialogComponent,
+     InformationjobComponent,
    
      
      

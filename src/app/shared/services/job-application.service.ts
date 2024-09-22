@@ -55,8 +55,9 @@ getCandidatesWithScoreAboveThreshold(): Observable<any[]> {
       return this.http.get<JobApplicationModel>(url);
     }
   
-   
-  
+    getJobApplicationDetailsByJobId(jobId: number): Observable<JobApplicationModel> {
+      return this.http.get<JobApplicationModel>(`${this.url}/job/${jobId}`);
+    }
    
  
     addJobApplication(jobApplication: JobApplicationModel) {

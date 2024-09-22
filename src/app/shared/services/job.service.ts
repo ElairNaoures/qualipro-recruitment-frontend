@@ -22,11 +22,11 @@ export class JobService {
     }
 
 
-    getAllJobById(jobId: number) {
+    getAllJobById(jobId: number) : Observable<JobModel> {
       let url = `${this.url}/${jobId}`;
       return this.http.get<JobModel>(url);
     }
-  
+   
     getJobsByProfile(profileName: string): Observable<JobModel[]> {
       return this.http.get<JobModel[]>(`${this.url}/by-profile?profileName=${profileName}`);
     }

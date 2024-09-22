@@ -19,30 +19,7 @@
 
   <div class="mat-elevation-z8">
     <mat-card>
-      <!-- <mat-card-content>
-        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
-          <div formArrayName="questions">
-            <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i">
-              <div class="question-fields">
-                <mat-form-field appearance="fill" class="full-width">
-                  <mat-label>Nom de la Question</mat-label>
-                  <input matInput formControlName="questionName" required>
-                  <mat-error *ngIf="question.get('questionName')?.hasError('required')">
-                    Le nom de la question est requis
-                  </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="full-width">
-                  <mat-label>Coefficient</mat-label>
-                  <input matInput formControlName="coefficient" type="number">
-                </mat-form-field>
-              </div>
-              <mat-divider></mat-divider>
-            </div>
-          </div>
-          <button mat-raised-button color="primary" type="submit">Ajouter</button>
-        </form>
-      </mat-card-content> -->
+      
       <mat-card-content>
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
           <div formArrayName="questions">
@@ -68,6 +45,59 @@
           </div>
         </form>
       </mat-card-content>
+      
     </mat-card>
+   
   </div>
+  
+  
+<!-- Ajout de la liste des questions -->
+<div class="mat-elevation-z8" style="margin-top: 20px;">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Liste des Questions</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="questionsList" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="questionName">
+          <th mat-header-cell *matHeaderCellDef> Nom de la Question </th>
+          <td mat-cell *matCellDef="let question"> {{ question.questionName }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="correctOption">
+          <th mat-header-cell *matHeaderCellDef> Réponse Correcte </th>
+          <td mat-cell *matCellDef="let question"> {{ question.correctQuestionOptionName }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td mat-cell *matCellDef="let question">
+            <button
+              mat-icon-button
+              matTooltip="Click to Edit"
+              class="iconbutton"
+              color="primary"
+              (click)="openUpdateQuestion(question)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Click to Delete"
+              class="iconbutton"
+              color="warn"
+              (click)="openDeleteQuestion(question.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['questionName', 'correctOption', 'actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['questionName', 'correctOption', 'actions'];"></tr>
+      </table>
+      
+    </mat-card-content>
+  </mat-card>
+</div>
 </div>

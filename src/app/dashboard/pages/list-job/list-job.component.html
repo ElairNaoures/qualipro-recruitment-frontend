@@ -94,7 +94,15 @@
   <th mat-header-cell *matHeaderCellDef mat-sort-header>utilisateur necessaire</th>
   <td mat-cell *matCellDef="let row">{{ row.firstName }} {{ row.lastName }}</td>
 </ng-container>
-
+ <!-- Information Column -->
+ <ng-container matColumnDef="information">
+  <th mat-header-cell *matHeaderCellDef>Information</th>
+  <td mat-cell *matCellDef="let row">
+    <button mat-icon-button (click)="openJobInformation(row.id)">
+      <mat-icon>info</mat-icon>
+    </button>
+  </td>
+</ng-container>
 <!-- profile Name Column -->
 <!-- <ng-container matColumnDef="profileName">
   <th mat-header-cell *matHeaderCellDef mat-sort-header>profile</th>

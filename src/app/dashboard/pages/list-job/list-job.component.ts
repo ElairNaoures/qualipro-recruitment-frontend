@@ -12,6 +12,7 @@ import { UserData } from '../list-users/list-users.component';
 import { UserService } from '../../../shared/services/user.service';
 import { UserModel } from '../../../shared/models/user.model';
 import { JobData } from '../../../jobs/pages/list-jobs/list-jobs.component';
+import { Router } from '@angular/router';
 
 
 
@@ -21,21 +22,28 @@ import { JobData } from '../../../jobs/pages/list-jobs/list-jobs.component';
   styleUrls: ['./list-job.component.scss']
 })
 export class ListJobComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'description', 'yearsOfExperience', 'languages', 'educationLevel', 'expirationDate', 'createdAt', 'fullName', 'actions'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'yearsOfExperience', 'languages', 'educationLevel', 'expirationDate', 'createdAt', 'fullName', 'information', 'actions'];
   dataSource: MatTableDataSource<JobData>;
   job_data: JobModel[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private jobservice: JobService, private dialog: MatDialog, private userService: UserService) {
+  constructor(
+    private jobservice: JobService,
+     private dialog: MatDialog,
+      private userService: UserService,
+       private router: Router) {
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit(): void {
     this.getAllJobs();
   }
-
+ 
+  openJobInformation(jobId: number) {
+    this.router.navigate(['dashboard/informationjob', jobId]);
+  }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

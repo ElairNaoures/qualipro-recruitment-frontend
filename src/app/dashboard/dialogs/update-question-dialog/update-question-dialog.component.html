@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row" style="display: flex; justify-content: center; align-items: center; width: 100%">
+      <div class="col-md-12" style="margin-top: 4%;">
+        <h3>Tu veux modifier cet emploi :</h3>
+      </div>
+    </div>
+    
+    <form [formGroup]="questionForm" (ngSubmit)="updateQuestion()">
+      <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;">
+        <div class="col-md-3">
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier cette question</h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="questionName"
+                placeholder="Modifier cette question"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+  
+          <mat-dialog-content class="dialog-content">
+            <h5 class="dialog-title">Modifier cette réponse correcte ?</h5>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                formControlName="correctQuestionOptionName"
+                placeholder="Modifier la réponse correcte"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </mat-dialog-content>
+        </div>
+      </div>
+    </form>
+    
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%">
+      <mat-dialog-actions>
+        <div class="button-container" style="width: 100%">
+          <button mat-flat-button color="primary" (click)="updateQuestion()">
+            Valider
+          </button>
+          <button mat-flat-button color="warn" (click)="closeDialog()">
+            Annuler
+          </button>
+        </div>
+      </mat-dialog-actions>
+    </div>
+  </div>
+  

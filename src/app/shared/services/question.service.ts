@@ -48,16 +48,24 @@ export class QuestionService {
   // getQuestionsByQuizId(quizId: number): Observable<QuestionModel[]> {
   //   return this.http.get<QuestionModel[]>(`${this.url}/quiz/${quizId}`);
   // }
+  // QuestionService
   getQuestionsByQuizId(quizId: number): Observable<QuestionModel[]> {
     const apiUrl = `${this.url}/quiz/${quizId}`;
-    console.log(`Requête GET à: ${apiUrl}`); // Pour débogage
     return this.http.get<QuestionModel[]>(apiUrl).pipe(
+      map(questions => {
+        return questions.map(question => ({
+          ...question,
+          correctQuestionOptionName: question.correctQuestionOptionName || '' // Ensure fallback if name is not set
+        }));
+      }),
       catchError(error => {
-        console.error('Erreur lors de la récupération des questions:', error);
-        return EMPTY; // Remplacez par une gestion d'erreur appropriée
+        console.error('Error fetching questions:', error);
+        return EMPTY; // Replace with appropriate error handling
       })
     );
   }
+  
+
   
   
   

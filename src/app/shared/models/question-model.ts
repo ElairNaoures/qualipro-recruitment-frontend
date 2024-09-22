@@ -6,6 +6,7 @@ export interface QuestionModel {
   quizId?: number; 
   coefficient?: number; 
   correctQuestionOptionId?: number;
+  correctQuestionOptionName?: string;
   questionOptions: QuestionOptionModel[];
   
   }

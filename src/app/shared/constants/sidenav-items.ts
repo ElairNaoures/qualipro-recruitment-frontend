@@ -13,7 +13,7 @@ export const SIDENAV_MENU_ITEMS: SideNavMenuModel[] = [
   { name: 'Liste Des Utilisateur', route: '/dashboard/users/list', icon: 'people' },
   { name: 'Liste des Type de contrat', route: '/dashboard/contracttypes/list', icon: 'description' }, // 'description' icon
   { name: 'Liste des Condidats', route: '/dashboard/condidats/list', icon: 'person' }, // 'person' icon
-  { name: 'Liste des Skills', route: '/dashboard/skills/list', icon: 'star' },
+  { name: 'Liste des Skills ', route: '/dashboard/skills/list', icon: 'star' },
   { name: 'Liste des Quizs', route: '/dashboard/quizs/list', icon: 'quiz' },
   { name: 'Liste des profiles emplois', route: '/dashboard/ProfileJobs/list', icon: 'business_center' }, // 'business_center' icon
   { name: 'Liste des emplois demander', route: '/dashboard/EmploisDemander/list', icon: 'request_page' }, // 'request_page' icon

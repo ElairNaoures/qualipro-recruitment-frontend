@@ -28,7 +28,7 @@ export interface CondidatData {
   styleUrl: './list-condidat.component.scss'
 })
 export class ListCondidatComponent implements OnInit {
-  displayedColumns: string[] = ['id','summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate' ,'imageFileName','cvFileName', 'actions'];
+  displayedColumns: string[] = ['id','summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate' ,'cvFileName', 'actions'];
 
   dataSource: MatTableDataSource<CondidatData>;
 

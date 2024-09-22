@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';  // Import ActivatedRoute
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';  
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort'; // Importer MatSort
 import { QuestionService } from '../../../shared/services/question.service';
 import { QuestionModel } from '../../../shared/models/question-model';
 import { AddQuestionOptionDialogComponent } from '../../dialogs/add-question-option-dialog/add-question-option-dialog.component';
+import { DeleteQuestionDialogComponent } from '../../dialogs/delete-question-dialog/delete-question-dialog.component';
+import { UpdateQuestionDialogComponent } from '../../dialogs/update-question-dialog/update-question-dialog.component';
 
 @Component({
   selector: 'app-add-question',
   templateUrl: './add-question.component.html',
   styleUrls: ['./add-question.component.scss']
 })
-export class AddQuestionComponent implements OnInit {
+export class AddQuestionComponent implements OnInit, AfterViewInit { // Ajouter AfterViewInit
+
   questionForm: FormGroup;
-  quizId!: number;  // Declare quizId
+  quizId!: number;  
+  questionsList: QuestionModel[] = [];
+
+  @ViewChild(MatSort) sort!: MatSort; // Déclarer MatSort
 
   constructor(
     private fb: FormBuilder,
@@ -29,9 +36,25 @@ export class AddQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
-    this.route.paramMap.subscribe(params => {
-      this.quizId = Number(params.get('quizId'));
+    this.route.params.subscribe(params => {
+      this.quizId = +params['quizId'];
+      this.loadQuestions(); // Load questions for the quiz
+    });
+
+    this.route.queryParams.subscribe(queryParams => {
+      if (queryParams['refresh']) {
+        this.loadQuestions(); // Refresh questions if query param is present
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.loadQuestions(); // Assurez-vous que le tableau est chargé après la vue
+  }
+
+  loadQuestions(): void {
+    this.questionService.getQuestionsByQuizId(this.quizId).subscribe(questions => {
+      this.questionsList = questions;
     });
   }
 
@@ -71,6 +94,7 @@ export class AddQuestionComponent implements OnInit {
               duration: 3000
             });
             this.openAddQuestionOptionDialog(response);
+            this.loadQuestions();
           },
           error => console.error('Error adding question', error)
         );
@@ -83,12 +107,39 @@ export class AddQuestionComponent implements OnInit {
       width: '500px',
       data: {
         questionId: question.id,
+        quizId: this.quizId,
         question: question
       }
     });
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('Le dialogue a été fermé');
+    });
+  }
+  
+  openDeleteQuestion(questionId: number): void {
+    const dialogRef = this.dialog.open(DeleteQuestionDialogComponent, {
+      width: '400px',
+      data: { questionId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadQuestions();
+      }
+    });
+  }
+
+  openUpdateQuestion(question: QuestionModel): void {
+    const dialogRef = this.dialog.open(UpdateQuestionDialogComponent, {
+      width: '500px',
+      data: question
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadQuestions(); // Reload questions after updating
+      }
     });
   }
 }

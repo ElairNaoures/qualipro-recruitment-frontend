@@ -21,6 +21,7 @@ import { InformationPersoUserComponent } from './components/information-perso-us
 import { JobApplicationChartComponent } from './components/job-application-chart/job-application-chart.component';
 import { QuizEvaluationComponent } from './components/quiz-evaluation/quiz-evaluation.component';
 import { CondidatMoyenChartComponent } from './components/condidat-moyen-chart/condidat-moyen-chart.component';
+import { InformationjobComponent } from './components/informationjob/informationjob.component';
 
 const routes: Routes = [
   {
@@ -203,8 +204,10 @@ const routes: Routes = [
 
       
       { path: 'QuizEvaluation/:jobApplicationId', component: QuizEvaluationComponent },
+      { path: 'informationjob/:id', component: InformationjobComponent },
 
 
+      
       
       
     ],

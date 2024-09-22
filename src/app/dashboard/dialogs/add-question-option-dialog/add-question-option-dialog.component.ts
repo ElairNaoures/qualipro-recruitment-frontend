@@ -22,14 +22,14 @@ export class AddQuestionOptionDialogComponent {
     private questionOptionService: QuestionOptionService,
     private questionService: QuestionService, // Inject the question service
     private router: Router,  // Inject Router
-    @Inject(MAT_DIALOG_DATA) public data: { questionId: number, question: QuestionModel } // Add QuestionModel object
+    @Inject(MAT_DIALOG_DATA) public data: { questionId: number, quizId: number, question: QuestionModel } // Add QuestionModel object
   ) {
     // Check if this.data.question is defined, if not initialize it
     if (!this.data.question) {
       this.data.question = {
         id: this.data.questionId,
         questionName: '',
-        quizId: undefined,
+        quizId: this.data.quizId,
         coefficient: undefined,
         correctQuestionOptionId: undefined,
         questionOptions: []
@@ -73,39 +73,88 @@ export class AddQuestionOptionDialogComponent {
     this.selectedCorrectOptionIndex = index;
   }
 
+  // saveOptions(): void {
+  //   if (this.optionForm.valid) {
+  //     const questionOptions: QuestionOptionModel[] = this.optionForm.value.options.map((option: any) => ({
+  //       id: 0,
+  //       questionOptionName: option.optionName,
+  //       questionId: this.data.questionId,
+  //       isCorrect: option.isCorrect // Add the field to indicate if the option is correct
+  //     }));
+
+  //     // Add all options one by one
+  //     questionOptions.forEach(option => {
+  //       this.questionOptionService.addQuestionOption(option).subscribe((savedOption) => {
+  //         if (option.isCorrect) {
+  //           // Update the correctQuestionOptionId column with the ID of the correct option
+  //           this.data.question.correctQuestionOptionId = savedOption.id;
+
+  //           // Save the updated question
+  //           this.questionService.updateQuestion(this.data.question.id, this.data.question).subscribe(() => {
+  //             this.closeDialogAndNavigate();  // Close the dialog and navigate
+  //           });
+  //         }
+  //       });
+  //     });
+
+  //     // If no correct option is selected, just close the dialog and navigate
+  //     if (this.selectedCorrectOptionIndex === null) {
+  //       this.closeDialogAndNavigate();  // Close the dialog and navigate
+  //     }
+  //   }
+  // }
+
+  // closeDialogAndNavigate(): void {
+  //   this.dialogRef.close();
+  //   this.router.navigate(['dashboard/quizs']);  // Navigate to the quizs route after closing the dialog
+  // }
+  // closeDialogAndNavigate(): void {
+  //   this.dialogRef.close();
+  //   if (this.data.quizId) {
+  //     this.router.navigate(['dashboard/addQuestion', this.data.quizId]); // Navigate with quizId
+  //   } else {
+  //     console.error('quizId is undefined');
+  //     // Handle the case where quizId is undefined, maybe navigate to a different route or show an error
+  //   }
+  // }
   saveOptions(): void {
     if (this.optionForm.valid) {
       const questionOptions: QuestionOptionModel[] = this.optionForm.value.options.map((option: any) => ({
         id: 0,
         questionOptionName: option.optionName,
         questionId: this.data.questionId,
-        isCorrect: option.isCorrect // Add the field to indicate if the option is correct
+        isCorrect: option.isCorrect
       }));
-
-      // Add all options one by one
+  
+      // Ajoutez toutes les options une par une
       questionOptions.forEach(option => {
         this.questionOptionService.addQuestionOption(option).subscribe((savedOption) => {
           if (option.isCorrect) {
-            // Update the correctQuestionOptionId column with the ID of the correct option
+            // Mettre à jour l'ID de l'option correcte
             this.data.question.correctQuestionOptionId = savedOption.id;
-
-            // Save the updated question
+  
+            // Sauvegarder la question mise à jour
             this.questionService.updateQuestion(this.data.question.id, this.data.question).subscribe(() => {
-              this.closeDialogAndNavigate();  // Close the dialog and navigate
+              this.closeDialogAndNavigate(true); // Passer true pour indiquer un rafraîchissement
             });
           }
         });
       });
-
-      // If no correct option is selected, just close the dialog and navigate
+  
+      // Si aucune option correcte n'est sélectionnée, fermez simplement la boîte de dialogue
       if (this.selectedCorrectOptionIndex === null) {
-        this.closeDialogAndNavigate();  // Close the dialog and navigate
+        this.closeDialogAndNavigate(true);
       }
     }
   }
-
-  closeDialogAndNavigate(): void {
+  
+  closeDialogAndNavigate(refresh: boolean = false): void {
     this.dialogRef.close();
-    this.router.navigate(['dashboard/quizs']);  // Navigate to the quizs route after closing the dialog
+    if (refresh) {
+      this.router.navigate(['dashboard/addQuestion', this.data.quizId], { queryParams: { refresh: true } });
+    } else {
+      this.router.navigate(['dashboard/addQuestion', this.data.quizId]);
+    }
   }
+  
 }

@@ -1,0 +1,36 @@
+<mat-card class="job-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>work</mat-icon>
+        <span class="job-title">{{ jobTitle }}</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Nombre de candidatures: {{ applicationCount }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div *ngIf="bestCandidate; else noCandidate">
+        <h2>Candidat le meilleur:</h2>
+        <div class="candidate-info">
+          <mat-icon class="candidate-icon">person</mat-icon>
+          <div>
+            <p><strong>Nom:</strong> {{ bestCandidate.candidateName }}</p>
+            <p><strong>Score:</strong> {{ bestCandidate.score }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noCandidate>
+        <div class="no-candidate">
+          <mat-icon class="info-icon">info</mat-icon>
+          <p>Aucun candidat trouvé.</p>
+        </div>
+      </ng-template>
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goBack()">Retour</button>
+    </mat-card-actions>
+  </mat-card>
+  
