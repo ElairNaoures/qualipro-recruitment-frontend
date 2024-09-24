@@ -1,36 +1,96 @@
-<mat-card class="job-card">
-    <mat-card-header>
-      <mat-card-title>
-        <mat-icon>work</mat-icon>
-        <span class="job-title">{{ jobTitle }}</span>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <mat-icon>assignment_ind</mat-icon>
-        <span>Nombre de candidatures: {{ applicationCount }}</span>
-      </mat-card-subtitle>
-    </mat-card-header>
-  
-    <mat-card-content>
-      <div *ngIf="bestCandidate; else noCandidate">
-        <h2>Candidat le meilleur:</h2>
-        <div class="candidate-info">
-          <mat-icon class="candidate-icon">person</mat-icon>
-          <div>
-            <p><strong>Nom:</strong> {{ bestCandidate.candidateName }}</p>
-            <p><strong>Score:</strong> {{ bestCandidate.score }}</p>
-          </div>
-        </div>
-      </div>
-      <ng-template #noCandidate>
-        <div class="no-candidate">
-          <mat-icon class="info-icon">info</mat-icon>
-          <p>Aucun candidat trouvé.</p>
-        </div>
-      </ng-template>
-    </mat-card-content>
-  
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="goBack()">Retour</button>
-    </mat-card-actions>
-  </mat-card>
-  
+<div class="container">
+    <div>
+        <mat-card class="job-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>work</mat-icon>
+                    <span class="job-title">{{ jobTitle }}</span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon>assignment_ind</mat-icon>
+                    <span>Nombre de candidatures postuler : {{ applicationCount }}</span>
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div *ngIf="bestCandidate; else noCandidate">
+                    <h2> le meilleur Candidat:</h2>
+                    <div class="candidate-info">
+                        <mat-icon class="candidate-icon">person</mat-icon>
+                        <div>
+                            <p><strong>Nom:</strong> {{ bestCandidate.candidateName }}</p>
+                            <p><strong>Score:</strong> {{ bestCandidate.score }}</p>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #noCandidate>
+                    <div class="no-candidate">
+                        <mat-icon class="info-icon">info</mat-icon>
+                        <p>Aucun candidat trouvé.</p>
+                    </div>
+                </ng-template>
+            </mat-card-content>
+
+        
+        </mat-card>
+
+        <!-- Expandable Table -->
+        <table mat-table [dataSource]="candidates" multiTemplateDataRows class="mat-elevation-z8">
+            <ng-container matColumnDef="candidateName">
+                <th mat-header-cell *matHeaderCellDef>Nom du candidat</th>
+                <td mat-cell *matCellDef="let element">{{ element.candidateName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="headToHeadInterviewNote">
+                <th mat-header-cell *matHeaderCellDef>Note de l'entretien</th>
+                <td mat-cell *matCellDef="let element">{{ element.headToHeadInterviewNote }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef>Score</th>
+                <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="expand">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="loadCandidateDetails(this.condidatId , this.jobId)">
+                        <mat-icon>{{ expandedElement === element ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button >
+                        <mat-icon>email</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+                    <div class="example-element-detail" [@detailExpand]="expandedElement === element ? 'expanded' : 'collapsed'">
+                        <div *ngIf="expandedElement === element">
+                            <div *ngIf="candidateDetails; else noDetails">
+                                <p><strong>Prénom:</strong> {{ candidateDetails.firstName ?? 'null' }}</p>
+                                <p><strong>Nom:</strong> {{ candidateDetails.lastName ?? 'null' }}</p>
+                                <p><strong>Pays:</strong> {{ candidateDetails.country ?? 'null' }}</p>
+                                <p><strong>Téléphone:</strong> {{ candidateDetails.phoneNumber ?? 'null' }}</p>
+                                <p><strong>Date de naissance:</strong> {{ candidateDetails.birthdate | date: 'mediumDate' ?? 'null' }}</p>
+                                <p><strong>Résumé:</strong> {{ candidateDetails.summary ?? 'null' }}</p>
+                            </div>
+                            <ng-template #noDetails>
+                                <p>Aucun détail disponible pour ce candidat.</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" [class.example-expanded-row]="expandedElement === element" (click)="toggleCandidateDetails(element)"></tr>
+            <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table> 
+    </div>
+</div>

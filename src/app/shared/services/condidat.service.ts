@@ -23,9 +23,9 @@ export class CondidatService {
     //   let url = `${this.url}/${condidatId}`;
     //   return this.http.get<CondidatModel>(url);
     // }
-    getCondidatById(condidatId: number): Observable<CondidatModel> {
-      return this.http.get<CondidatModel>(`${this.url}/${condidatId}`);
-    }
+    // getCondidatById(condidatId: number): Observable<CondidatModel> {
+    //   return this.http.get<CondidatModel>(`${this.url}/${condidatId}`);
+    // }
    
   
     // updateCondidat(condidatId: number, condidat: CondidatModel) {
@@ -40,4 +40,10 @@ export class CondidatService {
       let url = `${this.url}/${condidatId}`;
       return this.http.delete<any>(url);
     }
+
+    getCondidatById(condidatId: number): Observable<CondidatModel> {
+      return this.http.get<CondidatModel>(`${this.url}/${condidatId}`);
+    }
+    
+    
 }

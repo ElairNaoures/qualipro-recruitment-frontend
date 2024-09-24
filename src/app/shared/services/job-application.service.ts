@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { JobApplicationModel, JobWithApplicationCount } from '../models/job-application-model';
 import { catchError, Observable, throwError } from 'rxjs';
+import { CondidatModel } from '../models/Condidat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,7 @@ export class JobApplicationService {
   url = `${environment.baseUrl}/api/JobApplication`;
 
   constructor(private http: HttpClient) { }
-    // getAllJobApplications() {
-      
-    //   let url = `${this.url}`;
-    //    return this.http.get<JobApplicationModel[]>(url);
-    // }
-    // Méthode pour obtenir toutes les candidatures
-  // getAllJobApplications(): Observable<JobApplicationModel[]> {
-  //   return this.http.get<JobApplicationModel[]>(`${this.url}`);
-  // }
+  
 
   getAllJobApplications(): Observable<JobApplicationModel[]> {
     return this.http.get<JobApplicationModel[]>(`${this.url}`).pipe(
@@ -78,24 +71,29 @@ getCandidatesWithScoreAboveThreshold(): Observable<any[]> {
       );
     }
   
-    // updateJobApplication(jobApplicationId: number, jobApplication: JobApplicationModel) {
-    //   let url = `${this.url}/${jobApplicationId}`;
-    //   return this.http.put<JobApplicationModel>(url, jobApplication);
-    // }
-    // updateJobApplication(jobApplicationId: number, jobApplication: JobApplicationModel) {
-    //   let url = `${this.url}/${jobApplicationId}`;
-    //   return this.http.put<JobApplicationModel>(url, jobApplication);
-    // }
-    // updateJobApplication(id: number, meetingDate: Date): Observable<JobApplicationModel> {
-    //   return this.http.patch<JobApplicationModel>(`${this.url}/job-applications/${id}`, { meetingDate });
-    // }
+   
     
+    GetAllJobApplicationsByJobId(jobId: number): Observable<JobApplicationModel[]> {
+      return this.http.get<JobApplicationModel[]>(`${this.url}/jobinfo/${jobId}`);
+    }
+    // getCandidatesByJobApplicationId(jobApplicationId: number): Observable<any> {
+    //   return this.http.get(`${this.url}/job-application/${jobApplicationId}/candidates`);
+    // }
+    getCandidatesByJobApplicationId(jobApplicationId: number): Observable<CondidatModel[]> {
+      return this.http.get<CondidatModel[]>(`${this.url}/job-application/${jobApplicationId}/candidates`);
+    }
+   
   
-
     deleteJobApplication(jobApplicationId: number) {
       let url = `${this.url}/${jobApplicationId}`;
       return this.http.delete<any>(url);
     }
+
+    getCondidatInfo(condidatId: number, jobId: number): Observable<CondidatModel> {
+      const url = `${this.url}/condidat/${condidatId}/job/${jobId}`; // Adjust the URL as needed
+      return this.http.get<CondidatModel>(url);
+    }
+  
   
 }
 

@@ -1,14 +1,21 @@
+import { CondidatModel } from "./Condidat.model";
 import { JobModel } from "./job.model";
 
 export interface JobApplicationModel {
 
     id?: number;
     condidatId?: number; 
-    condidat?: {
-        firstName?: string;
-        lastName?: string;
-        deleted?: boolean;  
-    };
+    condidat?: CondidatModel;
+    
+    // condidat?: {
+    //     firstName?: string;
+    //     lastName?: string;
+    //     deleted?: boolean;  
+    //     country?: string;
+    // phoneNumber?: string;
+    // birthdate?: Date;
+    // summary?: string;
+    // };
     
     job?: JobModel;
     jobId?: number; 
