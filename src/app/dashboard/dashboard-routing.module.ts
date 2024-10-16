@@ -204,7 +204,8 @@ const routes: Routes = [
 
       
       { path: 'QuizEvaluation/:jobApplicationId', component: QuizEvaluationComponent },
-      { path: 'informationjob/:id', component: InformationjobComponent },
+       { path: 'informationjob/:id', component: InformationjobComponent },
+      //{ path: 'informationjob/:jobId/:applicationId', component: InformationjobComponent }
 
 
       

@@ -26,6 +26,7 @@ export interface JobApplicationModel {
     headToHeadInterviewNote?: number | null;
     score?: number | null;
     deleted?: boolean;
+    isSelected?: boolean;
     
 }
 // models/job-with-application-count.model.ts

@@ -94,6 +94,43 @@ getCandidatesWithScoreAboveThreshold(): Observable<any[]> {
       return this.http.get<CondidatModel>(url);
     }
   
+  // Accept candidate by ID
+  // acceptCandidate(candidateId: number) {
+  //   return this.http.post(`${this.url}/accept/${candidateId}`, {});
+  // }
+  // Accepter une candidature
+  // acceptCandidate(id: number): Observable<any> {
+  //   return this.http.post(`${this.url}/accept/${id}`, {});
+  // }
+  acceptCandidate(id: number): Observable<any> {
+    return this.http.post(`${this.url}/accept/${id}`, {}).pipe(
+        catchError((error) => {
+            // Ici vous pouvez logguer ou gérer l'erreur comme vous le souhaitez
+            console.error('Erreur dans acceptCandidate:', error);
+            return throwError(error);
+        })
+    );
+}
+
+rejectCandidate(id: number): Observable<any> {
+  return this.http.post(`${this.url}/reject/${id}`, {}).pipe(
+    catchError((error) => {
+      console.error('Erreur dans rejectCandidate:', error);
+      return throwError(error);
+    })
+  );
+}
+
+
+
+  // Reject candidate by ID
+  // rejectCandidate(candidateId: number){
+  //   return this.http.post(`${this.url}/reject/${candidateId}`, {});
+  // }
+  // rejectCandidate(candidateId: number): Observable<any> {
+  //   return this.http.post(`${this.url}/reject/${candidateId}`, {});
+  // }
+  
   
 }
 

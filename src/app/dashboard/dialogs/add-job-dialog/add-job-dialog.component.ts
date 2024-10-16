@@ -44,37 +44,66 @@ export class AddJobDialogComponent {
     this.initForm();
   }
 
-  addJob(){
-    console.log(this.myForm.value); 
-
-    let languagesValue:string [] = this.myForm.get("languages")?.value || [];
-    let languagesValueStr =""
+  addJob() {
+    console.log(this.myForm.value);
+  
+    let languagesValue: string[] = this.myForm.get("languages")?.value || [];
+    let languagesValueStr = "";
     if (languagesValue.length > 0) {
-
       languagesValueStr = languagesValue.join(",");
     }
-    let job_data : JobModel={
-    title:this.myForm.get("title")?.value,
-    description:this.myForm.get("description")?.value,
-    yearsOfExperience:this.myForm.get("yearsOfExperience")?.value,
-    languages:languagesValueStr,
-    educationLevel:this.myForm.get("educationLevel")?.value,
-    expirationDate:this.myForm.get("expirationDate")?.value,
-    contractTypeId: this.myForm.get("contractTypeId")?.value,
-
-    userId: this.myForm.get("userId")?.value,
-    jobProfileId: this.myForm.get("jobProfileId")?.value,
-    
-    }
-    console.log("after join",job_data); 
-
+    let job_data: JobModel = {
+      title: this.myForm.get("title")?.value,
+      description: this.myForm.get("description")?.value,
+      yearsOfExperience: this.myForm.get("yearsOfExperience")?.value,
+      languages: languagesValueStr,
+      educationLevel: this.myForm.get("educationLevel")?.value,
+      expirationDate: this.myForm.get("expirationDate")?.value,
+      contractTypeId: this.myForm.get("contractTypeId")?.value,
+      userId: this.myForm.get("userId")?.value,
+      jobProfileId: this.myForm.get("jobProfileId")?.value,
+    };
+    console.log("after join", job_data);
+  
     this.jobService.addJob(job_data).subscribe({
-      next: res=> {
-        this.snackBar.open("Job ajoutee avec succees ",  "ok", {duration: 3000});
-        this.dialogRef.close({data:"success"});
+      next: res => {
+        this.snackBar.open("Job ajoutee avec succees ", "ok", { duration: 3000 });
+        this.dialogRef.close({ data: "success" });
       }
-    })
+    });
   }
+
+  // addJob(){
+  //   console.log(this.myForm.value); 
+
+  //   let languagesValue:string [] = this.myForm.get("languages")?.value || [];
+  //   let languagesValueStr =""
+  //   if (languagesValue.length > 0) {
+
+  //     languagesValueStr = languagesValue.join(",");
+  //   }
+  //   let job_data : JobModel={
+  //   title:this.myForm.get("title")?.value,
+  //   description:this.myForm.get("description")?.value,
+  //   yearsOfExperience:this.myForm.get("yearsOfExperience")?.value,
+  //   languages:languagesValueStr,
+  //   educationLevel:this.myForm.get("educationLevel")?.value,
+  //   expirationDate:this.myForm.get("expirationDate")?.value,
+  //   contractTypeId: this.myForm.get("contractTypeId")?.value,
+
+  //   userId: this.myForm.get("userId")?.value,
+  //   jobProfileId: this.myForm.get("jobProfileId")?.value,
+    
+  //   }
+  //   console.log("after join",job_data); 
+
+  //   this.jobService.addJob(job_data).subscribe({
+  //     next: res=> {
+  //       this.snackBar.open("Job ajoutee avec succees ",  "ok", {duration: 3000});
+  //       this.dialogRef.close({data:"success"});
+  //     }
+  //   })
+  // }
  
   
 

@@ -62,9 +62,20 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button >
-                        <mat-icon>email</mat-icon>
-                    </button>
+                    <!-- Button to accept the candidate -->
+<!-- Button to accept the candidate -->
+<button mat-icon-button (click)="selectCandidate(element, $event)">
+    <mat-icon style="color: green;" *ngIf="!element.isSelected">check_circle</mat-icon>
+</button>
+
+<!-- Button to reject the candidate -->
+<button mat-icon-button (click)="deselectCandidate(element, $event)">
+    <mat-icon style="color: red;" *ngIf="!element.isSelected">radio_button_unchecked</mat-icon>
+</button>
+
+  
+  
+  
                 </td>
             </ng-container>
             <ng-container matColumnDef="expandedDetail">
