@@ -5,27 +5,54 @@ export interface SideNavMenuModel {
   children?: SideNavMenuModel[];
 }
 
-export const SIDENAV_MENU_ITEMS: SideNavMenuModel[] = [
-  { name: 'Liste Des Modules', route: '/dashboard/modules/list', icon: 'widgets' }, // 'widgets' icon
+// Full menu for Admin
+const fullMenu: SideNavMenuModel[] = [
+  { name: 'Liste Des Modules', route: '/dashboard/modules/list', icon: 'widgets' },
   { name: 'Liste Des Comptes', route: '/dashboard/accounts/list', icon: 'account_circle' },
-  { name: 'Liste Des Roles', route: '/dashboard/roles/list', icon: 'admin_panel_settings' }, // Updated icon
+  { name: 'Liste Des Roles', route: '/dashboard/roles/list', icon: 'admin_panel_settings' },
   { name: 'Liste Des Emplois', route: '/dashboard/jobs/list', icon: 'work' },
   { name: 'Liste Des Utilisateur', route: '/dashboard/users/list', icon: 'people' },
-  { name: 'Liste des Type de contrat', route: '/dashboard/contracttypes/list', icon: 'description' }, // 'description' icon
-  { name: 'Liste des Condidats', route: '/dashboard/condidats/list', icon: 'person' }, // 'person' icon
-  { name: 'Liste des Skills ', route: '/dashboard/skills/list', icon: 'star' },
+  { name: 'Liste des Type de contrat', route: '/dashboard/contracttypes/list', icon: 'description' },
+  { name: 'Liste des Condidats', route: '/dashboard/condidats/list', icon: 'person' },
+  { name: 'Liste des Skills', route: '/dashboard/skills/list', icon: 'star' },
   { name: 'Liste des Quizs', route: '/dashboard/quizs/list', icon: 'quiz' },
-  { name: 'Liste des profiles emplois', route: '/dashboard/ProfileJobs/list', icon: 'business_center' }, // 'business_center' icon
-  { name: 'Liste des emplois demander', route: '/dashboard/EmploisDemander/list', icon: 'request_page' }, // 'request_page' icon
-  //{ name: 'Statistiques des Candidatures', route: '/dashboard/statistics', icon: 'bar_chart' } // Nouvel élément de menu
+  { name: 'Liste des profiles emplois', route: '/dashboard/ProfileJobs/list', icon: 'business_center' },
+  { name: 'Liste des emplois demander', route: '/dashboard/EmploisDemander/list', icon: 'request_page' },
   { 
     name: 'Statistiques', 
-    icon: 'bar_chart', // Icône pour les statistiques
+    icon: 'bar_chart', 
     children: [
       { name: 'Nombre de candidatures par emploi', route: '/dashboard/statistics/countByJob' },
       { name: 'Score moyen des entretiens', route: '/dashboard/statistics/condidatmoyen' },
       { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
     ]
   }
-
 ];
+
+// Limited menu for Recruteur
+const recruteurMenu: SideNavMenuModel[] = [
+  { name: 'Liste Des Emplois', route: '/dashboard/jobs/list', icon: 'work' },
+  { name: 'Liste des emplois demander', route: '/dashboard/EmploisDemander/list', icon: 'request_page' },
+  { 
+    name: 'Statistiques', 
+    icon: 'bar_chart', 
+    children: [
+      { name: 'Nombre de candidatures par emploi', route: '/dashboard/statistics/countByJob' },
+      { name: 'Score moyen des entretiens', route: '/dashboard/statistics/condidatmoyen' },
+      { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
+    ]
+  }
+];
+
+// Function to select the correct menu based on the user's role
+export const SIDENAV_MENU_ITEMS: SideNavMenuModel[] = (() => {
+  const roleName = localStorage.getItem('roleName');
+  if (roleName === 'Admin') {
+    return fullMenu;
+  } else if (roleName === 'Recruteur') {
+    return recruteurMenu;
+  } else {
+    console.error('Role not recognized. Defaulting to Recruteur menu.');
+    return recruteurMenu; // Default menu if the role is unrecognized
+  }
+})();

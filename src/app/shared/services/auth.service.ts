@@ -164,4 +164,14 @@ export class AuthService {
   getUserInfo(userId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/users/${userId}`);
   }
+  getRoleNameById(roleId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/role/${roleId}`);
+  }
+  // getRolename(roleId: number): Observable<any> {
+  //   return this.http.get<any>(`${this.apiUrl}/role/${roleId}`);
+  // }
+  getRolename(roleId: number): Observable<{ roleName: string }> {
+    return this.http.get<{ roleName: string }>(`/role/${roleId}`);
+  }
+  
 }

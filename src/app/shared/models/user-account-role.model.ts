@@ -34,4 +34,5 @@ export interface UserInfo {
   birthdate?: Date;
   email?: string;
   roleName?: string;
+  roleId?: number;
 }
