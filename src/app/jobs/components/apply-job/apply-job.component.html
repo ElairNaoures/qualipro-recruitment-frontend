@@ -1,13 +1,18 @@
 <mat-toolbar color="primary" class="toolbar">
     <mat-toolbar-row>
         <span class="page-title">Postuler pour un emploi</span>
+        <span class="spacer"></span> <!-- Ajouter un espace flexible -->
+        <!-- Icône de déconnexion -->
+        <button mat-icon-button aria-label="Logout" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="container">
     <mat-card class="apply-job-card">
         <div class="wrapper">
-            <div class="container">
+            <!-- <div class="container">
                 <h1>Télécharger Votre CV</h1>
                 <div class="upload-container"
                      (dragover)="onDragOver($event)"
@@ -28,7 +33,7 @@
                 <div class="file-info" *ngIf="fileName">
                     <p>Fichier téléchargé : {{ fileName }}</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- Question and Expandable Sections -->
         <mat-card class="info-card">

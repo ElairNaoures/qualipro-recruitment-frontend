@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CondidatService } from '../../../shared/services/condidat.service';
 import { CondidatModel } from '../../../shared/models/Condidat.model';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-candidatedetail',
@@ -18,6 +19,7 @@ export class CandidatedetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private condidatService: CondidatService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -67,5 +69,9 @@ export class CandidatedetailComponent implements OnInit {
 
   navigateToJobList(): void {
     this.router.navigate(['/jobs/jobs-lien/list'], { queryParams: { condidatId: this.condidatId } }); 
+  }
+  logout() {
+    this.authService.logout(); // Assurez-vous que cette méthode existe pour gérer la déconnexion
+    this.router.navigate(['/auth/sign-in']); // Rediriger vers la page de connexion après déconnexion
   }
 }

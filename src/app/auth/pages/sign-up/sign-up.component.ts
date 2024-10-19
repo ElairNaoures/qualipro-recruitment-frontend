@@ -55,7 +55,9 @@ export class SignUpComponent implements OnInit {
     this.authService.registerCondidat(formData).subscribe(
       (response) => {
         console.log('Inscription réussie !', response);
-        this.router.navigate(['/jobs/candidatedetail/:condidatId']);
+       //this.router.navigate(['/jobs/candidatedetail/:condidatId']);
+        this.router.navigate(['/auth/sign-in']);
+
       },
       (error) => {
         console.error('Erreur lors de l\'inscription:', error);

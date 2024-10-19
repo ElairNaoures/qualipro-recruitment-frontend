@@ -24,7 +24,7 @@ const fullMenu: SideNavMenuModel[] = [
     children: [
       { name: 'Nombre de candidatures par emploi', route: '/dashboard/statistics/countByJob' },
       { name: 'Score moyen des entretiens', route: '/dashboard/statistics/condidatmoyen' },
-      { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
+      
     ]
   }
 ];
@@ -32,6 +32,8 @@ const fullMenu: SideNavMenuModel[] = [
 // Limited menu for Recruteur
 const recruteurMenu: SideNavMenuModel[] = [
   { name: 'Liste Des Emplois', route: '/dashboard/jobs/list', icon: 'work' },
+  { name: 'Liste des Condidats', route: '/dashboard/condidats/list', icon: 'person' },
+
   { name: 'Liste des emplois demander', route: '/dashboard/EmploisDemander/list', icon: 'request_page' },
   { 
     name: 'Statistiques', 
@@ -39,7 +41,7 @@ const recruteurMenu: SideNavMenuModel[] = [
     children: [
       { name: 'Nombre de candidatures par emploi', route: '/dashboard/statistics/countByJob' },
       { name: 'Score moyen des entretiens', route: '/dashboard/statistics/condidatmoyen' },
-      { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
+     
     ]
   }
 ];

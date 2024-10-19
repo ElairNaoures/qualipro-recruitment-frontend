@@ -44,9 +44,9 @@ export class UpdateJobDialogComponent implements OnInit{
       languages: ['', Validators.required],
       educationLevel: ['', Validators.required],
       expirationDate: ['', Validators.required],
-      contractTypeId: [''],
+      contractTypeId: [null], 
       designation: [''],
-      userId: [''],
+      userId: [null], // Set default to null
       firstName: ['']
     });
   }
@@ -65,17 +65,46 @@ export class UpdateJobDialogComponent implements OnInit{
     
   }
 
+  // updateJob(): void {
+  //   if (this.jobForm.valid) {
+  //     this.jobToUpdate = {
+  //       ...this.jobForm.value,
+  //       expirationDate: new Date(this.jobForm.value.expirationDate),
+  //     };
+  //     console.log('Job à mettre à jour:', this.jobToUpdate);
+  //     if (this.jobToUpdate && this.jobToUpdate.id !== undefined) {
+  //       this.jobService.updateJob(this.jobToUpdate.id, this.jobToUpdate).subscribe({
+  //         next: (updatedJob: JobModel) => {
+  //           console.log('Updated Job:', updatedJob);
+  //           this.dialogRef.close(true);
+  //           this.snackBar.open('Le job a été mis à jour avec succès', 'Fermer', { duration: 3000 });
+  //         },
+  //         error: (error) => {
+  //           console.error('Erreur lors de la mise à jour du job:', error);
+  //           this.snackBar.open('Une erreur s\'est produite lors de la mise à jour du job. Veuillez réessayer.', 'Fermer', { duration: 3000 });
+  //         }
+  //       });
+  //     } else {
+  //       console.error('Le job ou son ID est indéfini.', this.jobToUpdate);
+  //     }
+  //   } else {
+  //     console.error('Le formulaire est invalide.');
+  //   }
+  // }
   updateJob(): void {
     if (this.jobForm.valid) {
       this.jobToUpdate = {
         ...this.jobForm.value,
-        expirationDate: new Date(this.jobForm.value.expirationDate),
+        expirationDate: new Date(this.jobForm.value.expirationDate).toISOString(),
+        id: this.data.id // Assurez-vous que l'ID est bien défini
       };
-      console.log('Job à mettre à jour:', this.jobToUpdate);
-      if (this.jobToUpdate && this.jobToUpdate.id !== undefined) {
+
+      console.log('Données envoyées pour la mise à jour:', this.jobToUpdate);
+
+      if (this.jobToUpdate.id != null) {
         this.jobService.updateJob(this.jobToUpdate.id, this.jobToUpdate).subscribe({
           next: (updatedJob: JobModel) => {
-            console.log('Updated Job:', updatedJob);
+            console.log('Job mis à jour avec succès:', updatedJob);
             this.dialogRef.close(true);
             this.snackBar.open('Le job a été mis à jour avec succès', 'Fermer', { duration: 3000 });
           },
@@ -91,6 +120,9 @@ export class UpdateJobDialogComponent implements OnInit{
       console.error('Le formulaire est invalide.');
     }
   }
+  
+  
+  
   
 
   onCancelClick(): void {

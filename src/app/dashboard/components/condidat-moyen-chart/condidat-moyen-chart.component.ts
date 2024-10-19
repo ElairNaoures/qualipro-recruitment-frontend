@@ -12,6 +12,17 @@ export class CondidatMoyenChartComponent implements OnInit {
   chart!: Chart<'doughnut', number[], string>;
   chartData: { jobTitle: string, candidates: { candidateName: string, score: number }[] }[] = [];
 
+  // Palette de couleurs
+  private colorPalette = [
+    'rgba(75, 192, 192, 0.6)',  // Teal
+    'rgba(255, 99, 132, 0.6)',  // Red
+    'rgba(255, 205, 86, 0.6)',  // Yellow
+    'rgba(54, 162, 235, 0.6)',   // Blue
+    'rgba(153, 102, 255, 0.6)',  // Purple
+    'rgba(255, 159, 64, 0.6)',   // Orange
+    'rgba(201, 203, 207, 0.6)',  // Grey
+  ];
+
   constructor(private jobApplicationService: JobApplicationService) {
     Chart.register(...registerables);
   }
@@ -42,15 +53,9 @@ export class CondidatMoyenChartComponent implements OnInit {
     });
   }
 
-  // Function to generate a color based on job title
-  getColorForJobTitle(jobTitle: string): string {
-    const colorMap: { [key: string]: string } = {
-      'job': 'rgba(75, 192, 192, 0.2)',
-      'job test': 'rgba(255, 99, 132, 0.2)',
-      'default': 'rgba(153, 102, 255, 0.2)'
-    };
-
-    return colorMap[jobTitle] || colorMap['default'];
+  // Function to generate a color for each job title
+  getColorForJobTitle(jobTitle: string, index: number): string {
+    return this.colorPalette[index % this.colorPalette.length]; // Cycle through the color palette
   }
 
   createChart(): void {
@@ -67,8 +72,18 @@ export class CondidatMoyenChartComponent implements OnInit {
     const data: number[] = [];
     const backgroundColors: string[] = [];
 
+    // A map to store the index of each job title
+    const jobTitleIndexMap: { [key: string]: number } = {};
+
     this.chartData.forEach(group => {
-      const color = this.getColorForJobTitle(group.jobTitle);
+      // Get or assign an index for the job title
+      const index = jobTitleIndexMap[group.jobTitle] !== undefined 
+        ? jobTitleIndexMap[group.jobTitle] 
+        : Object.keys(jobTitleIndexMap).length;
+
+      jobTitleIndexMap[group.jobTitle] = index; // Update the index map
+
+      const color = this.getColorForJobTitle(group.jobTitle, index);
 
       group.candidates.forEach(candidate => {
         labels.push(`${candidate.candidateName} (${group.jobTitle})`);
@@ -86,7 +101,7 @@ export class CondidatMoyenChartComponent implements OnInit {
             label: 'Scores',
             data: data,
             backgroundColor: backgroundColors,
-            borderColor: backgroundColors.map(color => color.replace('0.2', '1')),
+            borderColor: backgroundColors.map(color => color.replace('0.6', '1')), // Adjust border color
             borderWidth: 1
           }
         ]

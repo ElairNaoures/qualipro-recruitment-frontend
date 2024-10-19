@@ -161,7 +161,23 @@ export class ListJobComponent implements OnInit {
      }
 
 
-     openUpdateJob(job: JobData) {
+    //  openUpdateJob(job: JobData) {
+    //   if (job && job.id !== undefined) {
+    //     const dialog = this.dialog.open(UpdateJobDialogComponent, {
+    //       data: job,
+    //       width: '900px',
+    //     });
+    
+    //     dialog.afterClosed().subscribe((res) => {  
+    //       if (res) {
+    //         this.getAllJobs();
+    //       }
+    //     });
+    //   } else {
+    //     console.error("L 'emploi ou son ID est indéfini.");
+    //   }
+    // }
+    openUpdateJob(job: JobModel) {
       if (job && job.id !== undefined) {
         const dialog = this.dialog.open(UpdateJobDialogComponent, {
           data: job,
@@ -174,9 +190,10 @@ export class ListJobComponent implements OnInit {
           }
         });
       } else {
-        console.error("L 'emploi ou son ID est indéfini.");
+        console.error("Le job ou son ID est indéfini.");
       }
     }
+    
 
     openAddJob(){
 

@@ -7,35 +7,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { CondidatModel } from '../../../shared/models/Condidat.model';
 import { DeleteCondidatDialogComponent } from '../../dialogs/delete-condidat-dialog/delete-condidat-dialog.component';
 
-
 export interface CondidatData {
-  id: number ;
-  summary: string ;
-  firstName: string ;
-  lastName: string ;
-  country: string ;
-  phoneNumber: string ;
-  birthdate:  Date;
+  id: number;
+  summary: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  phoneNumber: string;
+  birthdate: Date;
   imageFileName?: string;
-
   cvFileName?: string;
-  
- 
 }
+
 @Component({
   selector: 'app-list-condidat',
   templateUrl: './list-condidat.component.html',
-  styleUrl: './list-condidat.component.scss'
+  styleUrls: ['./list-condidat.component.scss']
 })
 export class ListCondidatComponent implements OnInit {
-  displayedColumns: string[] = ['id','summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate' ,'cvFileName', 'actions'];
-
+  displayedColumns: string[] = ['id', 'summary', 'firstName', 'lastName', 'country', 'phoneNumber', 'birthdate', 'cvFileName', 'actions'];
   dataSource: MatTableDataSource<CondidatData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private condidatService: CondidatService , private dialog: MatDialog) {
+  constructor(private condidatService: CondidatService, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -51,44 +47,50 @@ export class ListCondidatComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+
   getAllCondidats() {
     this.condidatService.getAllCondidats().subscribe({
-      next: (res: CondidatModel[]) => { 
+      next: (res: CondidatModel[]) => {
         const condidatData: CondidatData[] = res.map(condidat => ({
           id: condidat.id || 0,
-          summary: condidat.summary|| '',
-          firstName: condidat.firstName|| '',
+          summary: condidat.summary || '',
+          firstName: condidat.firstName || '',
           lastName: condidat.lastName || '',
           country: condidat.country || '',
-          phoneNumber: condidat.phoneNumber|| '',
+          phoneNumber: condidat.phoneNumber || '',
           birthdate: condidat.birthdate || new Date(),
           imageFileName: condidat.imageFileName || '',
-
           cvFileName: condidat.cvFileName || '',
         }));
         this.dataSource.data = condidatData;
-        console.log(this.dataSource.data);
       },
-      error: (err: any) => { 
-        console.log('Error:', err);
-      },
-      complete: () => {} 
+      error: (err: any) => {
+        console.error('Error fetching candidates:', err);
+      }
     });
   }
 
-  openDeleteCondidat(condidatId: number){
-    this.dialog.open(DeleteCondidatDialogComponent, {
-     data: { condidatId: condidatId }
-   });
- }
+  openDeleteCondidat(condidatId: number) {
+    const dialogRef = this.dialog.open(DeleteCondidatDialogComponent, {
+      data: { condidatId: condidatId }
+    });
 
- getImagePath(fileName: string): string {
-  return `http://localhost:5000/UploadedImages/${fileName}`;
-}
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'deleted') {
+        this.getAllCondidats(); // Refresh data after deletion
+      }
+    });
+  }
 
+  getImagePath(fileName: string): string {
+    return `http://localhost:5000/UploadedImages/${fileName}`;
+  }
+
+  getCvPath(fileName: string): string {
+    return `http://localhost:5000/UploadedCVs/${fileName}`;
+  }
 }

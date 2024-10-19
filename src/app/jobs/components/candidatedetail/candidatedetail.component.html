@@ -3,7 +3,10 @@
     <mat-toolbar-row>
       
       <span class="page-title">Candidate Details</span>
-
+<!-- Icône de déconnexion -->
+<button mat-icon-button aria-label="Logout" (click)="logout()">
+  <mat-icon>logout</mat-icon>
+</button>
     </mat-toolbar-row>
   </mat-toolbar>
   <!-- Button to go back to the job list with an arrow -->
@@ -55,10 +58,10 @@
     </mat-card>
   
     <!-- Button to view CV -->
-    <div class="cv-button-container">
+    <!-- <div class="cv-button-container">
       <button mat-raised-button color="primary" (click)="viewCV()">
         Consulter votre CV
       </button>
-    </div>
+    </div> -->
   </div>
   

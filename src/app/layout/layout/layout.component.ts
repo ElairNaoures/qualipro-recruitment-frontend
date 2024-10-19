@@ -28,7 +28,7 @@ export class LayoutComponent {
     statisticsOptions = [
     { name: 'Nombre de candidatures par emploi', route: '/dashboard/statistics/countByJob' },
     { name: 'meuilleur condidat ', route: '/dashboard/statistics/condidatmoyen' },
-    { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
+   // { name: 'Candidatures au fil du temps', route: '/dashboard/statistics/applicationsOverTime' }
   ];
 
 

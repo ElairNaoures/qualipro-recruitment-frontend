@@ -44,6 +44,7 @@ import { FinQuizComponent } from './components/fin-quiz/fin-quiz.component';
 
 @NgModule({
   declarations: [
+    
     JobsComponent,
     ListJobsComponent,
     ListJobsLienComponent,

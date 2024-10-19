@@ -122,7 +122,9 @@ export class ApplyJobComponent {
           // Optionally, display a success message or notification
   
           // Navigate to CandidateQuiz with jobApplicationId in the URL
-          this.router.navigate([`jobs/CandidateQuiz/${jobApplicationId}`]);
+          //this.router.navigate([`jobs/CandidateQuiz/${jobApplicationId}`]);
+          this.router.navigate([`jobs/reponse`]);
+
         },
         error: (err) => {
           console.error('Error submitting application:', err);
@@ -140,5 +142,9 @@ export class ApplyJobComponent {
     // Retrieve candidate ID from local storage
     const id = localStorage.getItem('condidatId');
     return id ? Number(id) : null;
+  }
+  logout() {
+    this.authService.logout(); // Assurez-vous que cette méthode existe pour gérer la déconnexion
+    this.router.navigate(['/auth/sign-in']); // Rediriger vers la page de connexion après déconnexion
   }
 }

@@ -27,7 +27,8 @@ export class InformationPersoUserComponent implements OnInit {
      
       country: [''],
       phoneNumber: [''],
-      birthdate: ['']
+      birthdate: [''],
+      
     });
   }
 
@@ -61,30 +62,69 @@ export class InformationPersoUserComponent implements OnInit {
     }
   }
 
+  // onSubmit(): void {
+  //   if (this.userForm.valid) {
+  //     const formData = new FormData();
+  
+  //     // Append form fields
+  //     formData.append('id', this.userId.toString());  // Ensure ID is passed for updating
+  //     formData.append('firstName', this.userForm.get('firstName')?.value);
+  //     formData.append('lastName', this.userForm.get('lastName')?.value);
+  //     formData.append('country', this.userForm.get('country')?.value);
+  //     formData.append('phoneNumber', this.userForm.get('phoneNumber')?.value);
+  //     formData.append('birthdate', this.userForm.get('birthdate')?.value);
+  
+  //     // Append files if they are selected
+  //     if (this.selectedImageFile) {
+  //       formData.append('imageFile', this.selectedImageFile);
+  //     }
+  
+      
+  
+  //     // Send the form data to the service method
+  //     this.userService.updateUser(this.userId, formData).subscribe(
+  //       response => {
+  //         console.log('user updated successfully:', response);
+  //         this.snackBar.open('user updated successfully', 'Close', { duration: 3000 });
+  //       },
+  //       error => {
+  //         console.error('Error updating user:', error);
+  //         this.snackBar.open('Error updating user', 'Close', { duration: 3000 });
+  //       }
+  //     );
+  //   } else {
+  //     console.error('Form is not valid');
+  //     this.snackBar.open('Form is not valid', 'Close', { duration: 3000 });
+  //   }
+  // }
   onSubmit(): void {
     if (this.userForm.valid) {
       const formData = new FormData();
   
       // Append form fields
-      formData.append('id', this.userId.toString());  // Ensure ID is passed for updating
+      formData.append('id', this.userId.toString());
       formData.append('firstName', this.userForm.get('firstName')?.value);
       formData.append('lastName', this.userForm.get('lastName')?.value);
       formData.append('country', this.userForm.get('country')?.value);
       formData.append('phoneNumber', this.userForm.get('phoneNumber')?.value);
       formData.append('birthdate', this.userForm.get('birthdate')?.value);
   
+      // Conditionally append roleName only if it is not null or empty
+      const roleName = this.userForm.get('roleName')?.value;
+      if (roleName) {
+        formData.append('roleName', roleName);
+      }
+  
       // Append files if they are selected
       if (this.selectedImageFile) {
         formData.append('imageFile', this.selectedImageFile);
       }
   
-      
-  
       // Send the form data to the service method
       this.userService.updateUser(this.userId, formData).subscribe(
         response => {
-          console.log('user updated successfully:', response);
-          this.snackBar.open('user updated successfully', 'Close', { duration: 3000 });
+          console.log('User updated successfully:', response);
+          this.snackBar.open('User updated successfully', 'Close', { duration: 3000 });
         },
         error => {
           console.error('Error updating user:', error);
@@ -96,6 +136,7 @@ export class InformationPersoUserComponent implements OnInit {
       this.snackBar.open('Form is not valid', 'Close', { duration: 3000 });
     }
   }
+  
   navigateToJobList(): void {
     this.router.navigate(['/dashboard/EmploisDemander/list'], { queryParams: { userId: this.userId } }); 
   }
