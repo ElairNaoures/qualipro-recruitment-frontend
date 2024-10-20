@@ -10,9 +10,9 @@ import { JobApplicationService } from '../../../shared/services/job-application.
 export class CondidatMoyenChartComponent implements OnInit {
   @ViewChild('chartCanvas') private chartCanvas!: ElementRef<HTMLCanvasElement>;
   chart!: Chart<'doughnut', number[], string>;
-  chartData: { jobTitle: string, candidates: { candidateName: string, score: number }[] }[] = [];
+  chartData: { jobTitle: string, bestCandidate: { candidateName: string, score: number } }[] = []; // Updated data structure
 
-  // Palette de couleurs
+  // Color palette for the chart
   private colorPalette = [
     'rgba(75, 192, 192, 0.6)',  // Teal
     'rgba(255, 99, 132, 0.6)',  // Red
@@ -32,7 +32,7 @@ export class CondidatMoyenChartComponent implements OnInit {
   }
 
   loadCandidatesWithScore(): void {
-    this.jobApplicationService.getCandidatesWithScoreAboveThreshold().subscribe(data => {
+    this.jobApplicationService.getCandidatesWithHighestScore().subscribe(data => {
       console.log('Data received:', data);
 
       if (!Array.isArray(data)) {
@@ -75,21 +75,13 @@ export class CondidatMoyenChartComponent implements OnInit {
     // A map to store the index of each job title
     const jobTitleIndexMap: { [key: string]: number } = {};
 
-    this.chartData.forEach(group => {
-      // Get or assign an index for the job title
-      const index = jobTitleIndexMap[group.jobTitle] !== undefined 
-        ? jobTitleIndexMap[group.jobTitle] 
-        : Object.keys(jobTitleIndexMap).length;
+    this.chartData.forEach((item, index) => {
+      const color = this.getColorForJobTitle(item.jobTitle, index);
 
-      jobTitleIndexMap[group.jobTitle] = index; // Update the index map
-
-      const color = this.getColorForJobTitle(group.jobTitle, index);
-
-      group.candidates.forEach(candidate => {
-        labels.push(`${candidate.candidateName} (${group.jobTitle})`);
-        data.push(candidate.score);
-        backgroundColors.push(color);
-      });
+      // Add data for the highest-scoring candidate for each job
+      labels.push(`${item.bestCandidate.candidateName} (${item.jobTitle})`);
+      data.push(item.bestCandidate.score);
+      backgroundColors.push(color);
     });
 
     this.chart = new Chart(this.chartCanvas.nativeElement, {

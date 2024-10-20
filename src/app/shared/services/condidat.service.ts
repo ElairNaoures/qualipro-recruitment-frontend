@@ -44,6 +44,9 @@ export class CondidatService {
     getCondidatById(condidatId: number): Observable<CondidatModel> {
       return this.http.get<CondidatModel>(`${this.url}/${condidatId}`);
     }
-    
+ 
+    downloadCV(fileName: string): Observable<Blob> {
+      return this.http.get(`${this.url}/DownloadCV/${fileName}`, { responseType: 'blob' });
+    }
     
 }

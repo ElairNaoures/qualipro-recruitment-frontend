@@ -15,7 +15,6 @@ export interface CondidatData {
   country: string;
   phoneNumber: string;
   birthdate: Date;
-  imageFileName?: string;
   cvFileName?: string;
 }
 
@@ -47,6 +46,7 @@ export class ListCondidatComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -63,34 +63,34 @@ export class ListCondidatComponent implements OnInit {
           country: condidat.country || '',
           phoneNumber: condidat.phoneNumber || '',
           birthdate: condidat.birthdate || new Date(),
-          imageFileName: condidat.imageFileName || '',
           cvFileName: condidat.cvFileName || '',
         }));
         this.dataSource.data = condidatData;
+        console.log(this.dataSource.data);
       },
       error: (err: any) => {
-        console.error('Error fetching candidates:', err);
-      }
+        console.log('Error:', err);
+      },
     });
   }
 
   openDeleteCondidat(condidatId: number) {
-    const dialogRef = this.dialog.open(DeleteCondidatDialogComponent, {
+    this.dialog.open(DeleteCondidatDialogComponent, {
       data: { condidatId: condidatId }
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'deleted') {
-        this.getAllCondidats(); // Refresh data after deletion
-      }
+  downloadCV(fileName: string) {
+    this.condidatService.downloadCV(fileName).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName; // Use the file name for download
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, error => {
+      console.error('Erreur lors du téléchargement du CV:', error);
     });
-  }
-
-  getImagePath(fileName: string): string {
-    return `http://localhost:5000/UploadedImages/${fileName}`;
-  }
-
-  getCvPath(fileName: string): string {
-    return `http://localhost:5000/UploadedCVs/${fileName}`;
   }
 }

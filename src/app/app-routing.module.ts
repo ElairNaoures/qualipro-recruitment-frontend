@@ -7,7 +7,7 @@ import { SignUpAdminComponent } from './auth/pages/sign-up-admin/sign-up-admin.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'auth/admin/sign-in',
     pathMatch: 'full',
   },
   {

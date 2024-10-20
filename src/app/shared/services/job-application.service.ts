@@ -34,14 +34,24 @@ export class JobApplicationService {
     return this.http.get<JobWithApplicationCount[]>(`${this.url}/jobs-with-application-count`);
   }
 // Add this method to get candidates with score above threshold
-getCandidatesWithScoreAboveThreshold(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.url}/candidates-with-score-above-threshold`).pipe(
+// getCandidatesWithScoreAboveThreshold(): Observable<any[]> {
+//   return this.http.get<any[]>(`${this.url}/candidates-with-score-above-threshold`).pipe(
+//     catchError(error => {
+//       console.error('Error loading candidates with score above threshold:', error);
+//       return throwError(error);
+//     })
+//   );
+// }
+getCandidatesWithHighestScore(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.url}/candidates-with-highest-score`).pipe(
     catchError(error => {
-      console.error('Error loading candidates with score above threshold:', error);
+      console.error('Error loading candidates with the highest score:', error);
       return throwError(error);
     })
   );
 }
+
+
 
     getAllJobApplicationById(jobApplicationId: number) {
       let url = `${this.url}/${jobApplicationId}`;
